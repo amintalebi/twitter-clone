@@ -4,7 +4,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
@@ -78,17 +77,14 @@ const sidebar = {
   description:
     'سایتی برای دنبال کردن اخبار و به اشتراک گذاری آن‌ها',
   archives: [
-    { title: 'آذر ۹۸', url: '#' },
-    { title: 'آبان ۹۸', url: '#' },
-    { title: 'مهر ۹۸', url: '#' },
-    { title: 'شهریور ۹۸', url: '#' },
-    { title: 'مرداد ۹۸', url: '#' },
-    { title: 'تیر ۹۸', url: '#' },
+    { title: 'استیضاح ترامپ', url: '#' },
+    { title: 'برجام', url: '#' },
+    { title: 'انتخاب مجلس', url: '#' },
+    { title: 'قطعی اینترنت', url: '#' },
   ],
   social: [
     { name: 'Instagram', icon: InstagramIcon },
     { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
   ],
 };
 
@@ -99,7 +95,7 @@ export default function Blog() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="خبر" sections={sections} />
+        <Header title="اخبار" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
