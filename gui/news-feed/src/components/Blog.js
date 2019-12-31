@@ -1,4 +1,4 @@
-import React, from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -14,6 +14,7 @@ import Footer from './Footer';
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
+import Posts from "./Posts";
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -103,7 +104,8 @@ function Blog(){
               ))}
             </Grid>
             <Grid container spacing={5} className={classes.mainGrid}>
-              <Main title="لیست‌ پست‌ها" posts={posts} />
+              {/*<Main title="لیست‌ پست‌ها" posts={posts} />*/}
+              <Posts/>
               <Sidebar
                   title={sidebar.title}
                   description={sidebar.description}
