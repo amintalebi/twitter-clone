@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -14,6 +14,7 @@ import Footer from './Footer';
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
+import marked from 'marked';
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -88,33 +89,50 @@ const sidebar = {
   ],
 };
 
-export default function Blog() {
-  const classes = useStyles();
+class Blog extends Component{
+  componentDidMount() {
+    posts.map((post) => {
+      const readmePath = require(post);
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        <Header title="اخبار" sections={sections} />
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
-            {featuredPosts.map(post => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={5} className={classes.mainGrid}>
-            <Main title="لیست‌ پست‌ها" posts={posts} />
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
-          </Grid>
-        </main>
-      </Container>
-      <Footer title="اخبار" description="ساخته شده با عشق در دانشگاه صنعتی شریف" />
-    </React.Fragment>
-  );
+      fetch(readmePath)
+          .then(response => {
+            return response.text()
+          })
+          .then(text => {
+            posts[posts.indexOf(post)] = marked(text);
+          })
+    });
+  }
+
+  render() {
+    const classes = useStyles();
+    return (
+        <React.Fragment>
+          <CssBaseline />
+          <Container maxWidth="lg">
+            <Header title="اخبار" sections={sections} />
+            <main>
+              <MainFeaturedPost post={mainFeaturedPost} />
+              <Grid container spacing={4}>
+                {featuredPosts.map(post => (
+                    <FeaturedPost key={post.title} post={post} />
+                ))}
+              </Grid>
+              <Grid container spacing={5} className={classes.mainGrid}>
+                <Main title="لیست‌ پست‌ها" posts={posts} />
+                <Sidebar
+                    title={sidebar.title}
+                    description={sidebar.description}
+                    archives={sidebar.archives}
+                    social={sidebar.social}
+                />
+              </Grid>
+            </main>
+          </Container>
+          <Footer title="اخبار" description="ساخته شده با عشق در دانشگاه صنعتی شریف" />
+        </React.Fragment>
+    );
+  }
 }
+
+export default Blog;
