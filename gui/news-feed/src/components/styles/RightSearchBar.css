@@ -2,11 +2,11 @@
     color: lightpink;
 }
 /* label focus color */
-.RightSearchBar > div > input[type=text]:focus + label {
+.RightSearchBar > div > input.active[type=text]:focus + label {
     color: black;
 }
 /* label underline focus color */
-.RightSearchBar > div > input[type=text]:focus {
+.RightSearchBar > div > input.active[type=text]:focus {
     border-bottom: 1px solid lightpink;
     box-shadow: 0 1px 0 0 black;
 }

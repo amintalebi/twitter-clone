@@ -1,8 +1,25 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import './styles/LeftNavBar.css';
+import CreatePostModal from "./CreatePostModal";
 
 class LeftNavBar extends Component {
+    state = {
+        showCreatePostModal: false,
+    };
+
+    openCreatePostModal = () => {
+        this.setState({
+            showCreatePostModal: true
+        })
+    };
+
+    closeCreatePostModal = () => {
+        this.setState({
+            showCreatePostModal: false
+        })
+    };
+
     render() {
         return (
             <div className="LeftNavBar">
