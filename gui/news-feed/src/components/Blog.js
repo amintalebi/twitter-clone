@@ -8,7 +8,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
-import Main from './Main';
+import PrevMain from './PrevMain';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import post1 from './blog-post.1.md';
@@ -105,7 +105,7 @@ function Blog(){
             </Grid>
             <Grid container spacing={5} className={classes.mainGrid}>
               {/*<Main title="لیست‌ پست‌ها" posts={posts} />*/}
-              <Posts/>
+              <Posts />
               <Sidebar
                   title={sidebar.title}
                   description={sidebar.description}

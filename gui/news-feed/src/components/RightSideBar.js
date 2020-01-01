@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import RightSearchBar from "./RightSearchBar";
 
-class LeftSideBar extends Component {
+class RightSideBar extends Component {
     render() {
         return (
-            <aside className="LeftSideBar ">
-
+            <aside className="RightSideBar ">
+                <RightSearchBar />
             </aside>
         );
     };
 }
-export default LeftSideBar;
+export default RightSideBar;

@@ -8,7 +8,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
 import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css';
+
+
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -19,3 +20,5 @@ ReactDOM.render(<Provider store={store} ><App /></Provider>, document.getElement
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
