@@ -5,6 +5,7 @@ import Tabs from "./Tabs";
 import { Route } from "react-router-dom";
 
 class Main extends Component {
+
     render() {
         return (
           <div className='Main'>

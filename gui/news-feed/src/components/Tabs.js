@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import M from 'materialize-css';
 import './styles/Tabs.css'
 
@@ -11,6 +11,8 @@ class Tabs extends Component{
     }
 
     render() {
+        // this.props.match;
+        console.log(this.props);
         return (
             <div className="Tabs">
                 <div>
@@ -50,4 +52,6 @@ class Tabs extends Component{
     }
 }
 
-export default Tabs;
+
+export default withRouter(Tabs);
+

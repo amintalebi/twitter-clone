@@ -1,3 +1,7 @@
+/*.Tabs{*/
+/*    margin-top: 20px;*/
+/*}*/
+
 .Tabs > div > ul{
     padding: 0;
 
@@ -6,6 +10,28 @@
     position: relative;
     left: -10.5px;
 }
+
+@media (min-width: 576px) {
+
+}
+
+
+@media (min-width: 768px) {
+
+}
+
+
+@media (min-width: 992px) {
+
+}
+
+
+@media (min-width: 1200px) {
+    /*.Tabs{*/
+    /*    margin-top: 40px;*/
+    /*}*/
+}
+
 @media only screen and ( max-width: 1007px ){
     .Tabs > div > ul > li > a > i {
         padding-top: 3px;
