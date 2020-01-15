@@ -8,12 +8,13 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
-import Main from './Main';
+import PrevMain from './PrevMain';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
+import Posts from "./Posts";
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -88,33 +89,35 @@ const sidebar = {
   ],
 };
 
-export default function Blog() {
+function Blog(){
   const classes = useStyles();
-
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        <Header title="اخبار" sections={sections} />
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
-            {featuredPosts.map(post => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={5} className={classes.mainGrid}>
-            <Main title="لیست‌ پست‌ها" posts={posts} />
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
-          </Grid>
-        </main>
-      </Container>
-      <Footer title="اخبار" description="ساخته شده با عشق در دانشگاه صنعتی شریف" />
-    </React.Fragment>
+      <React.Fragment>
+        <CssBaseline />
+        <Container maxWidth="lg">
+          <Header title="اخبار" sections={sections} />
+          <main>
+            <MainFeaturedPost post={mainFeaturedPost} />
+            <Grid container spacing={4}>
+              {featuredPosts.map(post => (
+                  <FeaturedPost key={post.title} post={post} />
+              ))}
+            </Grid>
+            <Grid container spacing={5} className={classes.mainGrid}>
+              {/*<Main title="لیست‌ پست‌ها" posts={posts} />*/}
+              <Posts />
+              <Sidebar
+                  title={sidebar.title}
+                  description={sidebar.description}
+                  archives={sidebar.archives}
+                  social={sidebar.social}
+              />
+            </Grid>
+          </main>
+        </Container>
+        <Footer title="اخبار" description="ساخته شده با عشق در دانشگاه صنعتی شریف" />
+      </React.Fragment>
   );
 }
+
+export default Blog;

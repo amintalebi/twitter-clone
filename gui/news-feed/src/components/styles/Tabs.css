@@ -1,0 +1,14 @@
+.Tabs > div > ul{
+    padding: 0;
+
+}
+.Tabs {
+    position: relative;
+    left: -10.5px;
+}
+@media only screen and ( max-width: 1007px ){
+    .Tabs > div > ul > li > a > i {
+        padding-top: 3px;
+        font-size: 40px;
+    }
+}
