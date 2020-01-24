@@ -16,9 +16,12 @@ import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Posts from "./Posts";
 =======
 >>>>>>> parent of 939b5b7... package marked added and used in blog.
+=======
+>>>>>>> parent of b972d03... Posts added,
 =======
 >>>>>>> parent of b972d03... Posts added,
 
