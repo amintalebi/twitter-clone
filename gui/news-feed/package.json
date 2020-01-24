@@ -18,6 +18,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
+<<<<<<< HEAD
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2"
 =======
@@ -25,6 +26,9 @@
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0"
 >>>>>>> parent of 939b5b7... package marked added and used in blog.
+=======
+    "redux-thunk": "^2.3.0"
+>>>>>>> parent of 70d0877... CreatePostModal.js added
   },
   "scripts": {
     "start": "react-scripts start",

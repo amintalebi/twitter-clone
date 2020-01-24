@@ -17,7 +17,7 @@ class Posts extends Component {
             return posts.length > 0 ? (
                 <div className="card" key={ post.id }>
                     <div className="card-image">
-                        <img className="materialboxed" width="350" src="https://source.unsplash.com/random" />
+                        <img className="materialboxed" width="650" src="https://source.unsplash.com/random" />
                         <a href="#" className="halfway-fab btn-floating pink pulse">
                             <i className="material-icons">favorite</i>
                         </a>
