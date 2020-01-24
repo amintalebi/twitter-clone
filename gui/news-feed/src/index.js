@@ -30,8 +30,12 @@ ReactDOM.render(<App />, document.getElementById('root'));
 >>>>>>> parent of b972d03... Posts added,
 =======
 
+<<<<<<< HEAD
 ReactDOM.render(<App />, document.getElementById('root'));
 >>>>>>> parent of b972d03... Posts added,
+=======
+ReactDOM.render(<Blog />, document.getElementById('root'));
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, from 'react';
+=======
+import React from 'react';
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +21,7 @@ import post3 from './blog-post.3.md';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Posts from "./Posts";
 =======
 >>>>>>> parent of 939b5b7... package marked added and used in blog.
@@ -24,6 +29,8 @@ import Posts from "./Posts";
 >>>>>>> parent of b972d03... Posts added,
 =======
 >>>>>>> parent of b972d03... Posts added,
+=======
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -99,6 +106,7 @@ const sidebar = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function Blog(){
   const classes = useStyles();
   return (
@@ -131,6 +139,8 @@ function Blog(){
 
 export default Blog;
 =======
+=======
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
 export default function Blog() {
   const classes = useStyles();
 
@@ -160,5 +170,9 @@ export default function Blog() {
       <Footer title="اخبار" description="ساخته شده با عشق در دانشگاه صنعتی شریف" />
     </React.Fragment>
   );
+<<<<<<< HEAD
+}
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
+=======
 }
 >>>>>>> parent of 939b5b7... package marked added and used in blog.

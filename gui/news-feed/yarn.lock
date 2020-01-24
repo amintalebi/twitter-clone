@@ -4861,6 +4861,7 @@ hmac-drbg@^1.0.0:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.1, hoist-non-react-statics@^3.3.0:
 =======
 hoist-non-react-statics@^3.2.1:
@@ -4871,6 +4872,9 @@ hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.1:
 =======
 hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.1:
 >>>>>>> parent of b972d03... Posts added,
+=======
+hoist-non-react-statics@^3.2.1:
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#101685d3aff3b23ea213163f6e8e12f4f111e19f"
   integrity sha512-wbg3bpgA/ZqWrZuMOeJi8+SKMhr7X9TesL/rXMjTzh0p0JUBo3II8DHboYbuIXWRlttrUFxwcu/5kygrCw8fJw==
@@ -6515,6 +6519,7 @@ markdown-to-jsx@^6.10.3:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 materialize-css@^1.0.0-rc.2:
   version "1.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-1.0.0-rc.2.tgz#b9e6b18f698c6ef77bb6b628d59147faf131eff5"
@@ -6526,6 +6531,8 @@ materialize-css@^1.0.0-rc.2:
 >>>>>>> parent of b972d03... Posts added,
 =======
 >>>>>>> parent of b972d03... Posts added,
+=======
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -8544,6 +8551,7 @@ react-error-overlay@^6.0.4:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-is@^16.6.0, react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
 =======
 react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4:
@@ -8557,10 +8565,14 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is
 =======
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4:
 >>>>>>> parent of b972d03... Posts added,
+=======
+react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4:
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -8625,6 +8637,8 @@ react-router@5.1.2, react-router@^5.1.2:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+=======
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
 =======
 >>>>>>> parent of 939b5b7... package marked added and used in blog.
 react-scripts@3.3.0:

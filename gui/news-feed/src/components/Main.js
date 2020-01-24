@@ -61,7 +61,6 @@ const useStyles = makeStyles(theme => ({
 export default function Main(props) {
   const classes = useStyles();
   const { posts, title } = props;
-    console.log(props, "main props")
 
   return (
     <Grid item xs={12} md={8}>
@@ -82,8 +81,12 @@ export default function Main(props) {
 Main.propTypes = {
   posts: PropTypes.array,
   title: PropTypes.string,
+<<<<<<< HEAD
 };
 <<<<<<< HEAD
 >>>>>>> parent of 939b5b7... package marked added and used in blog.
 =======
 >>>>>>> parent of 41877e1... style folder added,
+=======
+};
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
