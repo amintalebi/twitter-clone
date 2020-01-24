@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "markdown-to-jsx": "^6.10.3",
+<<<<<<< HEAD
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -19,6 +20,11 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2"
+=======
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.0"
+>>>>>>> parent of 939b5b7... package marked added and used in blog.
   },
   "scripts": {
     "start": "react-scripts start",
