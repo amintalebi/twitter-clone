@@ -7,9 +7,13 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
 import 'materialize-css/dist/css/materialize.min.css'
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
+=======
+import M from 'materialize-css';
+>>>>>>> parent of 41877e1... style folder added,
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -23,5 +27,3 @@ ReactDOM.render(<Blog />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-
