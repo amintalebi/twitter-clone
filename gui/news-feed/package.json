@@ -3,50 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.8.1",
+    "@material-ui/core": "^4.9.0",
     "@material-ui/icons": "^4.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "font-loader": "^0.1.2",
+    "jquery": "^3.1.1",
     "markdown-to-jsx": "^6.10.3",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "materialize-css": "^1.0.0-rc.2",
-=======
->>>>>>> parent of b972d03... Posts added,
-=======
->>>>>>> parent of b972d03... Posts added,
+    "materialize-css": "^0.97.8",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-router": "^5.1.2",
-    "react-router-dom": "^5.1.2",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "react-scripts": "3.3.0",
-    "redux": "^4.0.5",
-<<<<<<< HEAD
-    "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.88.2"
-=======
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
->>>>>>> parent of 939b5b7... package marked added and used in blog.
-=======
-    "redux-thunk": "^2.3.0"
->>>>>>> parent of 70d0877... CreatePostModal.js added
-=======
-    "react-scripts": "3.3.0"
->>>>>>> parent of b972d03... Posts added,
-=======
-=======
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
->>>>>>> parent of 939b5b7... package marked added and used in blog.
-    "react-scripts": "3.3.0"
->>>>>>> parent of b972d03... Posts added,
+    "redux": "3.6.0",
+    "style-loader": "^0.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
