@@ -1,4 +1,4 @@
-import React from 'react';
+import React, from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -15,9 +15,12 @@ import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Posts from "./Posts";
 =======
 >>>>>>> parent of 939b5b7... package marked added and used in blog.
+=======
+>>>>>>> parent of b972d03... Posts added,
 
 const useStyles = makeStyles(theme => ({
   mainGrid: {
@@ -108,8 +111,7 @@ function Blog(){
               ))}
             </Grid>
             <Grid container spacing={5} className={classes.mainGrid}>
-              {/*<Main title="لیست‌ پست‌ها" posts={posts} />*/}
-              <Posts/>
+              <Main title="لیست‌ پست‌ها" posts={posts} />
               <Sidebar
                   title={sidebar.title}
                   description={sidebar.description}

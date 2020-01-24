@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class LeftSideBar extends Component {
-
     render() {
         return (
             <aside className="LeftSideBar ">
@@ -10,4 +9,3 @@ class LeftSideBar extends Component {
         );
     };
 }
-export default LeftSideBar;
