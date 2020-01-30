@@ -6,6 +6,7 @@ from channels.models import Channel
 
 class Post(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_creator')
+    content = models.CharField(max_length=250, null=True, blank=True)
     bookmarked = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     likes = models.ForeignKey(User, models.CASCADE, related_name='post_likes')
     shared = models.ForeignKey(User, models.CASCADE, related_name='post_shares')
@@ -21,3 +22,15 @@ class Post(models.Model):
         for reply in replies:
             replies |= reply.getReplies()
         return replies
+
+    def __str__(self):
+        return str(self.id)
+
+
+class PostMedia(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='uploads/% Y/% m/% d/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.id)
