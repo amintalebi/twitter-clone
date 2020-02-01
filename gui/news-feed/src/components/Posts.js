@@ -1,44 +1,61 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { deletePost } from "../store/actioncreators/postActions";
-import M from 'materialize-css';
+import {Card, CardActionArea, CardActions, CardHeader, CardMedia, Avatar, Typography, CardContent, IconButton} from "@material-ui/core";
+import  { withStyles, useTheme } from "@material-ui/core";
+import { MenuRounded } from "@material-ui/icons";
+
+const styles = theme => ({
+    avatar: {
+
+    },
+    media: {
+
+    }
+});
 
 class Posts extends Component {
-    componentDidMount() {
-        document.addEventListener('DOMContentLoaded', function() {
-            const elem = document.querySelectorAll('.materialboxed');
-            const instances = M.Materialbox.init(elem, {});
-        });
-    }
 
     render() {
         const posts = this.props.posts;
         const postList = posts.map((post) => {
             return posts.length > 0 ? (
-                <div className="card" key={ post.id }>
-                    <div className="card-image">
-                        <img className="materialboxed" width="350" src="https://source.unsplash.com/random" />
-                        <a href="#" className="halfway-fab btn-floating pink pulse">
-                            <i className="material-icons">favorite</i>
-                        </a>
-                    </div>
-                    <div className="card-content">
-                        <span className="card-title">{ post.title }</span>
-                        <p>{ post.content }</p>
-                    </div>
-                    <div className="card-action">
-                        <a href="#">More Details</a>
-                        <a href="#">View Ingredients</a>
-                        <a href="#" onClick={() => this.props.deletePost(post.id)}>Delete Post</a>
-                    </div>
-                </div>
+                <Card>
+                    <CardActionArea>
+                        <CardHeader
+                            avatar={
+                                <Avatar aria-label="recipe" className={this.props.classes.avatar}>
+                                    R
+                                </Avatar>
+                            }
+                            action={
+                                <IconButton aria-label="settings">
+                                    <MenuRounded />
+                                </IconButton>
+                            }
+                            title="Shrimp and Chorizo Paella"
+                            subheader="September 14, 2016"
+                        />
+                        <CardMedia
+                            className={this.props.classes.media}
+                            image="/static/images/cards/paella.jpg"
+                            title="Paella dish"
+                        />
+                        <CardContent>
+                            {"content"}
+                        </CardContent>
+                        <CardActions>
+
+                        </CardActions>
+                    </CardActionArea>
+                </Card>
             ) : (
                 <p>no post yet</p>
             )
         });
         return (
             <div className="Posts">
-                { postList }
+                { null }
             </div>
         );
     }
@@ -56,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Posts));

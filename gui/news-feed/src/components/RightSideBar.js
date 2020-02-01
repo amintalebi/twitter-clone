@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import RightSearchBar from "./RightSearchBar";
+import RightNavBar from "./RightNavBar";
 
 class RightSideBar extends Component {
     render() {
         return (
             <aside className="RightSideBar ">
-                <RightSearchBar />
+                <RightNavBar />
             </aside>
         );
     };
