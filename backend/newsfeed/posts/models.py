@@ -7,9 +7,6 @@ from channels.models import Channel
 class Post(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_creator')
     content = models.CharField(max_length=250, null=True, blank=True)
-    bookmarked = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    likes = models.ForeignKey(User, models.CASCADE, related_name='post_likes')
-    shared = models.ForeignKey(User, models.CASCADE, related_name='post_shares')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     shared_count = models.IntegerField(blank=True, default=0)
@@ -34,3 +31,16 @@ class PostMedia(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class ActionOnPost(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="like_user")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="like_post")
+
+    LIKE = 'FR'
+    SHARE = 'SO'
+    ACTIONS = [
+        (LIKE, 'Like'),
+        (SHARE, 'Share'),
+    ]
+    action = models.CharField(max_length=10, choices=ACTIONS)
