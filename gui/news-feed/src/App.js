@@ -12,10 +12,13 @@ import Inside from "./components/Inside";
 import ForgotPassword from "./components/ForgotPassword";
 
 const styles = theme => ({
+    root: {
 
+    },
 });
 
 class App extends Component {
+
 
     render() {
         return (
