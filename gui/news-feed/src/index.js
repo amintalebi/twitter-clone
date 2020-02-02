@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from "./App";
@@ -48,10 +49,17 @@ ReactDOM.render(
             <App />
         </Provider>
     </ThemeProvider>, document.getElementById('root'));
+=======
+import React from "react";
+import ReactDOM from "react-dom";
+import Blog from "./components/Blog";
+import * as serviceWorker from "./serviceWorker";
+import "materialize-css/dist/css/materialize.min.css";
+
+ReactDOM.render(<Blog />, document.getElementById("root"));
+>>>>>>> master
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-
