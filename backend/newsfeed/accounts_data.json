@@ -1,0 +1,11 @@
+[
+  {
+    "model": "accounts.profile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "bio": "CE @ SUT",
+      "joined_at": "2020-01-30T16:42:42.087Z"
+    }
+  }
+]
