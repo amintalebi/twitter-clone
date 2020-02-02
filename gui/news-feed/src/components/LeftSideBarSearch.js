@@ -1,11 +1,20 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom';
-import {Paper, IconButton, InputBase, Divider, Hidden} from "@material-ui/core";
+import {Paper, IconButton, InputBase, Divider, Hidden, Box} from "@material-ui/core";
 import { CloseRounded, SearchRounded, DirectionsRounded  } from "@material-ui/icons"
 import { withStyles, } from "@material-ui/core/styles";
 
 const styles = theme => ({
     root: {
+        position: "fixed",
+        top: 0,
+        backgroundColor: "white",
+        height: 48,
+    },
+    distanceProviderRoot: {
+        height: 48,
+    },
+    paperRoot: {
         display: 'flex',
         alignItems: 'center',
         borderRadius: "100px",
@@ -63,29 +72,36 @@ class LeftSideBarSearch extends Component {
         });
     };
     render() {
+        const { classes } = this.props;
+        const  { state } = this;
         return (
             <Hidden xsDown>
-                <Paper className={this.props.classes.root} id="search-field-parent" elevation={0}>
-                    <IconButton type="submit" className={this.props.classes.searchIconButton} disabled>
-                        <SearchRounded />
-                    </IconButton>
-                    <InputBase
-                        className={this.props.classes.input}
-                        placeholder="جست‌و‌جو"
-                        onInput={this.searchHandler}
-                        value={this.state.search}
-                    />
-                    {this.state.search ? (
-                        <IconButton className={this.props.classes.closeIconButton} onClick={this.searchCloseIconClickHandler}>
-                            <CloseRounded fontSize="small" />
+                <Box classes={{root: classes.root}}>
+
+                    <Paper classes={{root: classes.paperRoot}} id="search-field-parent" elevation={0}>
+                        <IconButton type="submit" className={classes.searchIconButton} disabled>
+                            <SearchRounded />
                         </IconButton>
-                    ) : null}
-                </Paper>
-                {this.state.search ? (
-                    <Paper elevation={1} className={this.props.classes.searchResult}>
-                        dwq
+                        <InputBase
+                            className={classes.input}
+                            placeholder="جست‌و‌جو"
+                            onInput={this.searchHandler}
+                            value={state.search}
+                        />
+                        {state.search ? (
+                            <IconButton className={classes.closeIconButton} onClick={this.searchCloseIconClickHandler}>
+                                <CloseRounded fontSize="small" />
+                            </IconButton>
+                        ) : null}
                     </Paper>
-                ) : null}
+                    {state.search ? (
+                        <Paper elevation={1} className={classes.searchResult}>
+                            dwq
+                        </Paper>
+                    ) : null}
+
+                </Box>
+                <Box />
             </Hidden>
         );
     }

@@ -1,31 +1,93 @@
 const initState = {
+    post: {
+
+    },
     posts: [
         {
-            link: "xxx",
-            title: "mamad",
-            content: "salam mamad",
+            owner: {
+                name: "اصغر",
+                id: "asghar",
+                icon: "https://picsum.photos/200/200"
+            },
+            chanelID: "",
+            content: "عجب گیری کردیما",
+            publishedDate: "2019/10/9",
             id: 1,
-            picture: "https://picsum.photos/200/300",
-            video: ""
-
+            media: {
+                src: "https://www.youtube.com/watch?v=XoAPIpOZYA4",
+                type: "video", // "" | "img" | "video" : component type
+            },
         },
         {
-            link: "xxx",
-            title: "ali",
-            content: "salam ali",
+            owner: {
+                name: "ممد",
+                id: "asghar",
+                icon: ""
+            },
+            chanelID: "bamarefata",
+            content: "خدایا شکرت",
+            publishedDate: "2019/4/9",
             id: 2,
-            picture: "",
-            video: "https://www.youtube.com/watch?v=oUFJJNQGwhk"
+            media: null,
         },
         {
-            link: "xxx",
-            title: "reza",
-            content: "salam reza",
+            owner: {
+                name: "اصغر",
+                id: "asghar",
+                icon: "https://picsum.photos/210/210"
+            },
+            chanelID: "bahala",
+            content: "بریم دور دور\n از اون زمان تا حالا",
+            publishedDate: "2000/10/9",
             id: 3,
-            picture: "",
-            video: "https://www.youtube.com/watch?v=oUFJJNQGwhk"
-        }
-    ]
+            media: {
+                src: "https://picsum.photos/230",
+                type: "img",
+            },
+        },
+        {
+            owner: {
+                name: "اصغر",
+                id: "asghar",
+                icon: "https://picsum.photos/200/200"
+            },
+            chanelID: "",
+            content: "عجب گیری کردیما",
+            publishedDate: "2019/10/9",
+            id: 4,
+            media: {
+                src: "https://picsum.photos/200/300",
+                type: "img",
+            },
+        },
+        {
+            owner: {
+                name: "ممد",
+                id: "asghar",
+                icon: ""
+            },
+            chanelID: "bamarefata",
+            content: "خدایا شکرت",
+            publishedDate: "2019/4/9",
+            id: 5,
+            media: null,
+        },
+        {
+            owner: {
+                name: "اصغر",
+                id: "asghar",
+                icon: "https://picsum.photos/210/210"
+            },
+            chanelID: "bahala",
+            content: "بریم دور دور\n از اون زمان تا حالا",
+            publishedDate: "2000/10/9",
+            id: 6,
+            media: {
+                src: "https://picsum.photos/230",
+                type: "img",
+            },
+        },
+    ],
 };
 
 

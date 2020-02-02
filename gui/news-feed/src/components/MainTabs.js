@@ -3,21 +3,27 @@ import Paper from "@material-ui/core/Paper";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import {Tabs, Tab, Hidden, AppBar, Typography, Box, styled, Fab, useMediaQuery} from "@material-ui/core";
 import { DirectionsRunRounded, FiberNewRounded, WhatshotRounded, PanToolRounded } from '@material-ui/icons';
+import {Link} from "react-router-dom";
 
-const StyledTab = styled(({icon, label, matches, ...other}) => matches ? (
-    <Tab label={label} {...other}/>
-) : (
-    <Tab fontSize={"large"} icon={icon} {...other}/>
-))``;
+const StyledTab = styled(({icon, label, matches, to, ...other}) =>
+    matches ? (
+        <Tab label={label} {...other} component={ Link } to={ to } />
+    ) : (
+        <Tab fontSize={"large"} icon={icon} {...other} component={ Link } to={ to } />
+    )
+)``;
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: "100%",
         boxShadow: "none",
         borderStyle: "solid",
         borderWidth: 0,
         borderBottomWidth: 1,
         borderColor: theme.palette.tertiary.main,
+        position: "sticky",
+        top: 0,
+        backgroundColor: "white",
+        zIndex: 2,
     },
     tab: {
         minWidth: "auto",
@@ -50,12 +56,12 @@ function MainTabs() {
             variant="fullWidth"
             indicatorColor="secondary"
             textColor="secondary"
-            className={classes.root}
+            classes={{root: classes.root}}
         >
-            <StyledTab icon={<DirectionsRunRounded fontSize={"large"}/>} label="دنبال شده‌ها" {...styledTabAttributes} />
-            <StyledTab icon={<FiberNewRounded fontSize={"large"}/>} label="تازه‌ترین‌ها" {...styledTabAttributes} />
-            <StyledTab icon={<WhatshotRounded fontSize={"large"}/>} label="داغ‌ترین‌ها" {...styledTabAttributes}  />
-            <StyledTab icon={<PanToolRounded fontSize={"large"}/>} label="شرکت کرده‌ها" {...styledTabAttributes} />
+            <StyledTab to="/home/following" icon={<DirectionsRunRounded fontSize={"large"}/>} label="دنبال شده‌ها" {...styledTabAttributes} />
+            <StyledTab to="/home/newest" icon={<FiberNewRounded fontSize={"large"}/>} label="تازه‌ترین‌ها" {...styledTabAttributes} />
+            <StyledTab to="/home/hottest" icon={<WhatshotRounded fontSize={"large"}/>} label="داغ‌ترین‌ها" {...styledTabAttributes}  />
+            <StyledTab to="/home/participated" icon={<PanToolRounded fontSize={"large"}/>} label="شرکت کرده‌ها" {...styledTabAttributes} />
         </Tabs>
     );
 }

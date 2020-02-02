@@ -6,6 +6,17 @@ import Main from "./Main";
 import LeftSideBar from "./LeftSideBar";
 
 const styles = theme => ({
+    root: {
+        // position: "fixed",
+        // overflowY: "auto",
+        // height: "100%",
+        // width: "auto",
+    },
+    scrollableBox: {
+        // direction: "rtl",
+        // padding: "0 auto",
+        // width: "100%",
+    },
     leftSideBar: {
         height: "100vh",
         boxSizing: "border-box",
@@ -37,16 +48,16 @@ const styles = theme => ({
         },
     },
     mainPage: {
-        height: "100vh",
+        height: "100%",
         boxSizing: "border-box",
         borderStyle: "solid",
         borderWidth: "0 1px",
         borderColor: theme.palette.tertiary.main,
         '@media only screen and (max-width: 600px)': {
-            width: "calc(100% - 68px)",
+            width: "calc(100vw - 68px)",
         },
         '@media only screen and (min-width: 600px) and (max-width: 988px)': {
-            width: "calc(100% - 88px)",
+            width: "calc(100vw - 88px)",
             maxWidth: 600,
         },
         '@media only screen and (min-width: 988px) and (max-width: 1008px)': {
@@ -100,16 +111,16 @@ const styles = theme => ({
 
 class Inside extends Component {
     render() {
+        const { classes } = this.props;
         return (
-            <Box display="flex" justifyContent="center" alignItems="center">
-                <Box className={this.props.classes.rightSideBar}><RightSideBar /></Box>
-                <Box className={this.props.classes.mainPage}>
-                        <Switch>
-                            <Route path='/home' component={ Main } />
-                        </Switch>
-                    <Main />
+            <Box display="flex" justifyContent="center" alignItems="flex-start" className={classes.scrollableBox}>
+                <Box className={classes.rightSideBar}><RightSideBar /></Box>
+                <Box className={classes.mainPage}>
+                    <Switch>
+                        <Route path='/' component={ Main } />
+                    </Switch>
                 </Box>
-                <Box className={this.props.classes.leftSideBar}><LeftSideBar /></Box>
+                <Box className={classes.leftSideBar}><LeftSideBar /></Box>
             </Box>
         );
     };

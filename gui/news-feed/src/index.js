@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
-import Blog from "./components/Blog"
 import { ThemeProvider } from "@material-ui/core";
 import { createMuiTheme} from "@material-ui/core/styles";
 

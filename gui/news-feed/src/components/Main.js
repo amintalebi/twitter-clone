@@ -3,21 +3,25 @@ import { withRouter, Switch } from "react-router";
 import Posts from "./Posts";
 import MainTabs from "./MainTabs";
 import { Route } from "react-router-dom";
-import { withStyles } from "@material-ui/core";
+import {Box, withStyles} from "@material-ui/core";
 
 const styles = theme => ({
+    root: {
+
+    }
 });
 
 class Main extends Component {
     render() {
+        const { classes } = this.props;
         return (
-          <div>
+          <Box className={classes.root}>
               <MainTabs/>
               <Route path='/home/following' component={Posts} />
               <Route path='/home/newest' component={Posts} />
               <Route path='/home/hottest' component={Posts} />
               <Route path='/home/participated' component={Posts} />
-          </div>
+          </Box>
         );
     }
 }
