@@ -1,38 +1,29 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Markdown from "./Markdown";
-import Divider from "@material-ui/core/Divider";
-import PropTypes from "prop-types";
+import { withRouter, Switch } from "react-router";
+import Posts from "./Posts";
+import MainTabs from "./MainTabs";
+import { Route } from "react-router-dom";
+import {Box, withStyles} from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
-  markdown: {
-    ...theme.typography.body2,
-    padding: theme.spacing(3, 0)
-  }
-}));
+const styles = theme => ({
+    root: {
 
-export default function Main(props) {
-  const classes = useStyles();
-  const { posts, title } = props;
+    }
+});
 
-  return (
-    <Grid item xs={12} md={8}>
-      <Typography variant="h6" gutterBottom>
-        {title}
-      </Typography>
-      <Divider />
-      {posts.map(post => (
-        <Markdown className={classes.markdown} key={post.substring(0, 40)}>
-          {post}
-        </Markdown>
-      ))}
-    </Grid>
-  );
+class Main extends Component {
+    render() {
+        const { classes } = this.props;
+        return (
+          <Box className={classes.root}>
+              <MainTabs/>
+              <Route path='/home/following' component={Posts} />
+              <Route path='/home/newest' component={Posts} />
+              <Route path='/home/hottest' component={Posts} />
+              <Route path='/home/participated' component={Posts} />
+          </Box>
+        );
+    }
 }
 
-Main.propTypes = {
-  posts: PropTypes.array,
-  title: PropTypes.string
-};
+export default withStyles(styles)(withRouter(Main));
