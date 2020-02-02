@@ -1,0 +1,1377 @@
+[
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "auth",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "accounts",
+      "model": "profile"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "accounts",
+      "model": "following"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "posts",
+      "model": "post"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "posts",
+      "model": "postmedia"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "posts",
+      "model": "actiononpost"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "channels",
+      "model": "channel"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+      "app_label": "channels",
+      "model": "channeladmin"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "f484t0tnigpw9k7d3f8h0wioo6oii0q4",
+    "fields": {
+      "session_data": "MzczYzExNzFhODI5MjMyMjhkZTEyMzRkYjM1NWU5MmE0MWJjOTU3NTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2NmI0OGQ5MDZlMjRlNzQyZGE4N2M1ZTM0ODRhMmQ5YTUyNTM1MGZhIn0=",
+      "expire_date": "2020-02-16T20:58:24.513Z"
+    }
+  },
+  {
+    "model": "posts.postmedia",
+    "pk": 1,
+    "fields": {
+      "post": 1,
+      "image": "uploads/% Y/% m/% d/index.png",
+      "created_at": "2020-02-02T21:29:00.614Z"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add profile",
+      "content_type": 7,
+      "codename": "add_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change profile",
+      "content_type": 7,
+      "codename": "change_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete profile",
+      "content_type": 7,
+      "codename": "delete_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view profile",
+      "content_type": 7,
+      "codename": "view_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add following",
+      "content_type": 8,
+      "codename": "add_following"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change following",
+      "content_type": 8,
+      "codename": "change_following"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete following",
+      "content_type": 8,
+      "codename": "delete_following"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view following",
+      "content_type": 8,
+      "codename": "view_following"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add post",
+      "content_type": 9,
+      "codename": "add_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change post",
+      "content_type": 9,
+      "codename": "change_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete post",
+      "content_type": 9,
+      "codename": "delete_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view post",
+      "content_type": 9,
+      "codename": "view_post"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add post media",
+      "content_type": 10,
+      "codename": "add_postmedia"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change post media",
+      "content_type": 10,
+      "codename": "change_postmedia"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete post media",
+      "content_type": 10,
+      "codename": "delete_postmedia"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view post media",
+      "content_type": 10,
+      "codename": "view_postmedia"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add action on post",
+      "content_type": 11,
+      "codename": "add_actiononpost"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change action on post",
+      "content_type": 11,
+      "codename": "change_actiononpost"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete action on post",
+      "content_type": 11,
+      "codename": "delete_actiononpost"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view action on post",
+      "content_type": 11,
+      "codename": "view_actiononpost"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add channel",
+      "content_type": 12,
+      "codename": "add_channel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change channel",
+      "content_type": 12,
+      "codename": "change_channel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete channel",
+      "content_type": 12,
+      "codename": "delete_channel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view channel",
+      "content_type": 12,
+      "codename": "view_channel"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add channel admin",
+      "content_type": 13,
+      "codename": "add_channeladmin"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change channel admin",
+      "content_type": 13,
+      "codename": "change_channeladmin"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete channel admin",
+      "content_type": 13,
+      "codename": "delete_channeladmin"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view channel admin",
+      "content_type": 13,
+      "codename": "view_channeladmin"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$xJyPu7HbrOaz$n+AgTTAqrhUmuJ9Jcu25BO59jYdIv3B9NlJ6Jqa2O4E=",
+      "last_login": "2020-02-02T20:58:24.500Z",
+      "is_superuser": true,
+      "username": "amin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-02T20:58:09.752Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$5K7dWCwmqwgU$4U+wtcaLEzaE3+waHqxehPHF78hufg1ruivqKGQoq5I=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "ali",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-02-02T20:58:52.015Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$jDgaiX1rowbS$nQxUJ2ZEKK4TNLOAEK9cBuh70so5LGR3QjBQOz13jRQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "reza",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-02-02T20:58:59.300Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$gNeVPCzYF44q$R6zzFkbnFopyKGDsUWHIsReSRhYd2s7hGmRzerNG9rU=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "maryam",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-02-02T20:59:13.733Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "bio": "CE @ SUT",
+      "joined_at": "2020-02-02T20:59:54.246Z"
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "bio": "\u0628\u06cc\u0648",
+      "joined_at": "2020-02-02T21:00:06.857Z"
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "bio": "\u0628\u06cc\u0648",
+      "joined_at": "2020-02-02T21:00:20.216Z"
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "bio": "\u0628\u06cc\u0648",
+      "joined_at": "2020-02-02T21:00:27.346Z"
+    }
+  },
+  {
+    "model": "accounts.following",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "following": 2
+    }
+  },
+  {
+    "model": "accounts.following",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "following": 3
+    }
+  },
+  {
+    "model": "accounts.following",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "following": 4
+    }
+  },
+  {
+    "model": "accounts.following",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "following": 1
+    }
+  },
+  {
+    "model": "accounts.following",
+    "pk": 5,
+    "fields": {
+      "user": 4,
+      "following": 1
+    }
+  },
+  {
+    "model": "accounts.following",
+    "pk": 6,
+    "fields": {
+      "user": 4,
+      "following": 4
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+      "creator": 1,
+      "content": "\u0633\u0644\u0627\u0645 \u062f\u0646\u06cc\u0627",
+      "created_at": "2020-02-02T21:25:07.073Z",
+      "updated_at": "2020-02-02T21:25:07.073Z",
+      "shared_count": 2,
+      "liked_count": 2,
+      "parent": null,
+      "channel": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+      "creator": 2,
+      "content": "\u0633\u0644\u0627\u0645 \u062f\u0646\u06cc\u0627\u06cc \u0639\u0644\u06cc",
+      "created_at": "2020-02-02T21:25:39.051Z",
+      "updated_at": "2020-02-02T21:25:39.051Z",
+      "shared_count": 0,
+      "liked_count": 1,
+      "parent": null,
+      "channel": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+      "creator": 4,
+      "content": "\u0633\u0644\u0627\u0645 \u0645\u0646 \u0645\u0631\u06cc\u0645 \u0647\u0633\u062a\u0645",
+      "created_at": "2020-02-02T21:25:56.349Z",
+      "updated_at": "2020-02-02T21:25:56.349Z",
+      "shared_count": 0,
+      "liked_count": 3,
+      "parent": null,
+      "channel": 3
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+      "creator": 3,
+      "content": "\u0633\u0644\u0627\u0645 \u0645\u0646 \u0631\u0636\u0627\u0645",
+      "created_at": "2020-02-02T21:26:15.426Z",
+      "updated_at": "2020-02-02T21:26:15.426Z",
+      "shared_count": 1,
+      "liked_count": 0,
+      "parent": null,
+      "channel": 4
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+      "creator": 2,
+      "content": "\u0633\u0644\u0627\u0645 \u0633\u0644\u0627\u0645",
+      "created_at": "2020-02-02T21:27:19.584Z",
+      "updated_at": "2020-02-02T21:27:19.584Z",
+      "shared_count": 0,
+      "liked_count": 1,
+      "parent": 1,
+      "channel": 1
+    }
+  },
+  {
+    "model": "posts.actiononpost",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "post": 1,
+      "action": "FR"
+    }
+  },
+  {
+    "model": "posts.actiononpost",
+    "pk": 2,
+    "fields": {
+      "user": 4,
+      "post": 1,
+      "action": "FR"
+    }
+  },
+  {
+    "model": "posts.actiononpost",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "post": 1,
+      "action": "SO"
+    }
+  },
+  {
+    "model": "channels.channel",
+    "pk": 1,
+    "fields": {
+      "name": "Amin's Personal Channel",
+      "creator": 1,
+      "created_at": "2020-02-02T21:01:19.703Z",
+      "description": "\u06a9\u0627\u0646\u0627\u0644 \u0634\u062e\u0635\u06cc \u0627\u0645\u06cc\u0646",
+      "rules": "",
+      "is_personal": true
+    }
+  },
+  {
+    "model": "channels.channel",
+    "pk": 2,
+    "fields": {
+      "name": "Ali's Personal Channel",
+      "creator": 2,
+      "created_at": "2020-02-02T21:01:39.849Z",
+      "description": "",
+      "rules": "",
+      "is_personal": true
+    }
+  },
+  {
+    "model": "channels.channel",
+    "pk": 3,
+    "fields": {
+      "name": "Maryam's Personal Channel",
+      "creator": 4,
+      "created_at": "2020-02-02T21:02:06.697Z",
+      "description": "",
+      "rules": "",
+      "is_personal": true
+    }
+  },
+  {
+    "model": "channels.channel",
+    "pk": 4,
+    "fields": {
+      "name": "Reza's Personal Channel",
+      "creator": 3,
+      "created_at": "2020-02-02T21:02:22.641Z",
+      "description": "",
+      "rules": "",
+      "is_personal": true
+    }
+  },
+  {
+    "model": "channels.channeladmin",
+    "pk": 1,
+    "fields": {
+      "channel": 1,
+      "admin": 1
+    }
+  },
+  {
+    "model": "channels.channeladmin",
+    "pk": 2,
+    "fields": {
+      "channel": 2,
+      "admin": 2
+    }
+  },
+  {
+    "model": "channels.channeladmin",
+    "pk": 3,
+    "fields": {
+      "channel": 3,
+      "admin": 4
+    }
+  },
+  {
+    "model": "channels.channeladmin",
+    "pk": 4,
+    "fields": {
+      "channel": 4,
+      "admin": 3
+    }
+  },
+  {
+    "model": "channels.channeladmin",
+    "pk": 5,
+    "fields": {
+      "channel": 2,
+      "admin": 1
+    }
+  },
+  {
+    "model": "channels.channeladmin",
+    "pk": 6,
+    "fields": {
+      "channel": 3,
+      "admin": 1
+    }
+  },
+  {
+    "model": "channels.channeladmin",
+    "pk": 7,
+    "fields": {
+      "channel": 4,
+      "admin": 1
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2020-02-02T20:58:52.134Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "2",
+      "object_repr": "ali",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2020-02-02T20:58:59.414Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "3",
+      "object_repr": "reza",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2020-02-02T20:59:13.851Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "4",
+      "object_repr": "maryam",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2020-02-02T20:59:54.247Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "amin",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2020-02-02T21:00:06.858Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "2",
+      "object_repr": "reza",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2020-02-02T21:00:20.217Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "3",
+      "object_repr": "ali",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2020-02-02T21:00:27.347Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "4",
+      "object_repr": "maryam",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2020-02-02T21:01:19.704Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "1",
+      "object_repr": "1 Amin's Personal Channel",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2020-02-02T21:01:39.850Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "2",
+      "object_repr": "2 Ali's Personal Channel",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2020-02-02T21:02:06.697Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "3",
+      "object_repr": "3 Maryam's Personal Channel",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2020-02-02T21:02:22.643Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "4",
+      "object_repr": "4 Reza's Personal Channel",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2020-02-02T21:02:44.850Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "1",
+      "object_repr": "ChannelAdmin object (1)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2020-02-02T21:02:53.406Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "2",
+      "object_repr": "ChannelAdmin object (2)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2020-02-02T21:03:03.020Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "3",
+      "object_repr": "ChannelAdmin object (3)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2020-02-02T21:03:10.193Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "4",
+      "object_repr": "ChannelAdmin object (4)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2020-02-02T21:03:16.588Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "5",
+      "object_repr": "ChannelAdmin object (5)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2020-02-02T21:03:22.054Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "6",
+      "object_repr": "ChannelAdmin object (6)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2020-02-02T21:03:32.368Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "7",
+      "object_repr": "ChannelAdmin object (7)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2020-02-02T21:03:53.989Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Following object (1)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2020-02-02T21:03:59.712Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "Following object (2)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2020-02-02T21:04:04.457Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Following object (3)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2020-02-02T21:04:11.490Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "Following object (4)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2020-02-02T21:04:17.918Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Following object (5)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2020-02-02T21:04:25.922Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "6",
+      "object_repr": "Following object (6)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2020-02-02T21:25:07.074Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2020-02-02T21:25:39.053Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "2",
+      "object_repr": "2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2020-02-02T21:25:56.353Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "3",
+      "object_repr": "3",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2020-02-02T21:26:15.428Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "4",
+      "object_repr": "4",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2020-02-02T21:27:19.585Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "5",
+      "object_repr": "5",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2020-02-02T21:29:00.615Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "1",
+      "object_repr": "1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2020-02-02T21:29:21.246Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "1",
+      "object_repr": "ActionOnPost object (1)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+      "action_time": "2020-02-02T21:29:29.922Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "2",
+      "object_repr": "ActionOnPost object (2)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+      "action_time": "2020-02-02T21:29:41.973Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "3",
+      "object_repr": "ActionOnPost object (3)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  }
+]
