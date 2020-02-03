@@ -27,11 +27,16 @@ class PostCreateView(generics.CreateAPIView):
     serializer_class = PostCreateSerializer
 
 
+class PostUpdateView(generics.RetrieveUpdateAPIView):
+    serializer_class = PostUpdateSerializer
+    queryset = Post.objects.all()
+
+
 class PostMediaCreateView(generics.CreateAPIView):
     serializer_class = PostMediaSerializer
 
 
-class PostMediaDetailView(generics.RetrieveAPIView):
+class PostMediaUpdateView(generics.RetrieveUpdateAPIView):
     queryset = PostMedia.objects.all()
     serializer_class = PostMediaSerializer
 
