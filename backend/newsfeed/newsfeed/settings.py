@@ -134,8 +134,3 @@ REST_FRAMEWORK = {
     ),
 }
 
-FIXTURE_DIRS = (
-   os.path.join(BASE_DIR, 'posts', 'fixtures'),
-   os.path.join(BASE_DIR, 'channels', 'fixtures'),
-   os.path.join(BASE_DIR, 'accounts', 'fixtures'),
-)
