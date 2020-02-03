@@ -9,16 +9,27 @@ class Post(models.Model):
     content = models.CharField(max_length=250, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    shared_count = models.IntegerField(blank=True, default=0)
-    liked_count = models.IntegerField(blank=True, default=0)
+    up_vote_count = models.IntegerField(blank=True, default=0)
+    down_vote_count = models.IntegerField(blank=True, default=0)
     parent = models.ForeignKey('self', null=True, blank=True, db_index=True, on_delete=models.CASCADE)
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE, related_name='post_channel')
 
     def get_replies(self):
         replies = Post.objects.filter(parent=self.id)
         for reply in replies:
-            replies |= reply.getReplies()
-        return replies
+            replies |= reply.get_replies()
+        return replies.values(
+            'id',
+            'content',
+            'channel__name',
+            'creator__username',
+            'up_vote_count',
+            'down_vote_count',
+            'parent_id',
+            'created_at',
+            'updated_at',
+            'channel_id'
+        )
 
     def __str__(self):
         return str(self.id)
@@ -37,10 +48,10 @@ class ActionOnPost(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="like_user")
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="like_post")
 
-    LIKE = 'FR'
-    SHARE = 'SO'
+    UP_VOTE = 'UP_VOTE'
+    DOWN_VOTE = 'DOWN_VOTE'
     ACTIONS = [
-        (LIKE, 'Like'),
-        (SHARE, 'Share'),
+        (UP_VOTE, 'Up Vote'),
+        (DOWN_VOTE, 'Down Vote'),
     ]
     action = models.CharField(max_length=10, choices=ACTIONS)
