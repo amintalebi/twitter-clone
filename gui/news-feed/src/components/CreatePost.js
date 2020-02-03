@@ -50,7 +50,7 @@ const styles = theme => ({
     }
 });
 
-class Post extends Component {
+class CreatePost extends Component {
 
     render() {
         const { classes, post } = this.props;
@@ -115,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default withStyles(styles)(connect(null, mapDispatchToProps)(Post));
+export default withStyles(styles)(connect(null, mapDispatchToProps)(CreatePost));

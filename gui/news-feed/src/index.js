@@ -36,6 +36,7 @@ const theme = createMuiTheme({
             light: 'rgb(245, 248, 250)',
             main: 'rgb(230, 236, 240)',
             dark: 'rgb(91, 100, 106)',
+            contrastText: 'rgb(101, 119, 134)',
         }
     },
 });
