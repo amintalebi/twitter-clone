@@ -4,6 +4,7 @@ import Posts from "./Posts";
 import MainTabs from "./MainTabs";
 import { Route } from "react-router-dom";
 import {Box, withStyles} from "@material-ui/core";
+import CreatePost from "./CreatePost";
 
 const styles = theme => ({
     root: {
@@ -17,6 +18,7 @@ class Main extends Component {
         return (
           <Box className={classes.root}>
               <MainTabs/>
+              <CreatePost />
               <Route path='/home/following' component={Posts} />
               <Route path='/home/newest' component={Posts} />
               <Route path='/home/hottest' component={Posts} />

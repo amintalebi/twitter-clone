@@ -11,10 +11,11 @@ import {
     Typography,
     CardContent,
     IconButton,
-    Box
+    Box, InputBase
 } from "@material-ui/core";
 import  { withStyles } from "@material-ui/core";
 import { MenuRounded } from "@material-ui/icons";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
     root: {
@@ -23,37 +24,52 @@ const styles = theme => ({
         borderBottomWidth: 1,
         borderColor: theme.palette.tertiary.main,
         borderRadius: 0,
-        "&:hover": {
-            backgroundColor: theme.palette.tertiary.light
-        }
     },
     avatar: {
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(0),
     },
-    title: {
-
-    },
-    subheader: {
-        color: theme.palette.text.disabled,
-        direction: "ltr",
-        display: "flex",
-        justifyContent: "flex-end",
-        flexWrap: "no-wrap",
-        alignItems: "space-between"
+    contentInput: {
+        border: "none",
+        width: "95%",
     },
     mediaRoot: {
-
+        height: 0,
     },
     img: {
         height: 220,
-    }
+    },
+    imageInput: {
+        display: "none",
+    },
 });
 
 class CreatePost extends Component {
+    state = {
+        content: "",
+        image: "",
+    };
+
+    textInputOnChangeHandler = (e) => {
+        this.setState({
+            content: e.target.value,
+        });
+    };
+
+    loadImage = (e) => {
+        let reader = new FileReader();
+        console.log(this.state)
+        reader.onload = () => {
+            this.setState({
+                image: reader.result,
+            });
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    };
 
     render() {
-        const { classes, post } = this.props;
+        const { classes, myAccount } = this.props;
+        const { content, image } = this.state;
         return (
             <Card variant="outlined" classes={{root: classes.root}}>
                 <CardHeader
@@ -61,53 +77,54 @@ class CreatePost extends Component {
                     avatar={
                         <Avatar
                             aria-label="recipe"
-                            alt={ post.owner.name.charAt(0) }
-                            src={ post.owner.icon }
+                            alt={ myAccount.name }
+                            src={ myAccount.icon }
                         />
                     }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MenuRounded />
-                        </IconButton>
-                    }
                     title={
-                        <Typography>
-                            { post.owner.name }
-                        </Typography>
-                    }
-                    subheader={
-                        post.publishedDate + " @" + post.owner.id
+                        <InputBase
+                            multiline
+                            rowsMax="3"
+                            className={classes.contentInput}
+                            placeholder="هرچه دل تنگت می‌خواهد بگو!"
+                            onInput={this.textInputOnChangeHandler}
+                            value={content}
+                        />
                     }
                 />
                 <CardMedia
-                    component={
-                        post.media ? (
-                            post.media.type
-                        ) : (
-                            "div"
-                        )
-                    }
+                    component= {image ?  "img" : "div"}
                     classes={{root: classes.mediaRoot, img: classes.img}}
-                    image={
-                        post.media ? (
-                            post.media.src
-                        ) : (
-                            "#"
-                        )
-                    }
+                    image={ image }
                 />
-                <CardContent>
-                    { post.content }
-                </CardContent>
                 <CardActions>
-                    empty
+                    <input
+                        onChange={this.loadImage}
+                        accept="image/*"
+                        className={classes.imageInput}
+                        id="outlined-button-file"
+                        multiple
+                        type="file"
+                    />
+                    <label htmlFor="outlined-button-file">
+                        <Button variant="outlined" component="span" >
+                            عکس
+                        </Button>
+                    </label>
+                    <Button variant="outlined" component="span" >
+                        ذخیره کردن
+                    </Button>
                 </CardActions>
             </Card>
         );
     }
 }
 
-
+const mapStateToProps = (state, ownProps) => {
+    return {
+        myAccount: {name: "علی", icon: "https://picsum.photos/300/300"}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -115,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default withStyles(styles)(connect(null, mapDispatchToProps)(CreatePost));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(CreatePost));

@@ -13,13 +13,12 @@ import {
     Avatar,
     CardActions,
     Fab,
-    styled
+    styled, Modal
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
-import {KeyboardBackspaceRounded, MenuRounded} from "@material-ui/icons";
+import { KeyboardBackspaceRounded } from "@material-ui/icons";
 import {deletePost} from "../store/actioncreators/postActions";
 import {connect} from "react-redux";
-import rootReducer from "../store/reducers/rootReducer";
 import ProfileTabs from "./ProfileTabs";
 
 const styles = theme => ({
@@ -162,14 +161,23 @@ const styles = theme => ({
         marginLeft: theme.spacing(.5),
         marginRight: theme.spacing(1),
     },
+    editProfileModalRoot: {
+        width: 100,
+        height: 100,
+        backgroundColor: "red",
+    },
 });
 
 class ProfilePage extends Component {
-
+    state = {
+        mine: true,
+        followed: false,
+        editModalOpen: true,
+    };
 
     render() {
         const { classes } = this.props;
-        const  { mine, followed } = { min: true, followed: false };
+        const  { mine, followed, editModalOpen } = this.state;
         const onEditProfileButtonClick = (e) => {
 
         };
@@ -262,6 +270,13 @@ class ProfilePage extends Component {
                 </Card>
                 <ProfileTabs/>
                 <Posts />
+                <Modal
+                    open={editModalOpen}
+                >
+                    <Box>
+
+                    </Box>
+                </Modal>
             </Box>
         );
     }

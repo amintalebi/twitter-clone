@@ -51,7 +51,6 @@ const styles = theme => ({
 });
 
 class Post extends Component {
-
     render() {
         const { classes, post } = this.props;
         return (
@@ -79,6 +78,9 @@ class Post extends Component {
                         post.publishedDate + " @" + post.owner.id
                     }
                 />
+                <CardContent>
+                    { post.content }
+                </CardContent>
                 <CardMedia
                     component={
                         post.media ? (
@@ -96,9 +98,6 @@ class Post extends Component {
                         )
                     }
                 />
-                <CardContent>
-                    { post.content }
-                </CardContent>
                 <CardActions>
                     empty
                 </CardActions>
