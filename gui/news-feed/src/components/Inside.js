@@ -4,6 +4,10 @@ import { Switch, Route } from "react-router";
 import RightSideBar from "./RightSideBar";
 import Main from "./Main";
 import LeftSideBar from "./LeftSideBar";
+import PostPage from "./PostPage";
+import SearchPage from "./SearchPage";
+import ProfilePage from "./ProfilePage";
+import ChannelPage from "./ChannelPage";
 
 const styles = theme => ({
     root: {
@@ -48,6 +52,7 @@ const styles = theme => ({
         },
     },
     mainPage: {
+        minHeight: "100vh",
         height: "100%",
         boxSizing: "border-box",
         borderStyle: "solid",
@@ -117,6 +122,10 @@ class Inside extends Component {
                 <Box className={classes.rightSideBar}><RightSideBar /></Box>
                 <Box className={classes.mainPage}>
                     <Switch>
+                        <Route path='/channel/:id' component={ ChannelPage } />
+                        <Route path='/profile/:id' component={ ProfilePage } />
+                        <Route path='/search' component={ SearchPage } />
+                        <Route path='/post/:id' component={ PostPage } />
                         <Route path='/' component={ Main } />
                     </Switch>
                 </Box>

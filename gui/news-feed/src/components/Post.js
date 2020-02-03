@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { deleteMyPost } from "../store/actioncreators/postActions";
+import { deletePost } from "../store/actioncreators/postActions";
 import {
     Card,
     CardActionArea,
@@ -51,7 +51,6 @@ const styles = theme => ({
 });
 
 class Post extends Component {
-
     render() {
         const { classes, post } = this.props;
         return (
@@ -61,7 +60,7 @@ class Post extends Component {
                     avatar={
                         <Avatar
                             aria-label="recipe"
-                            alt={ "post.owner.name.charAt(0)" }
+                            alt={ post.owner.name.charAt(0) }
                             src={ post.owner.icon }
                         />
                     }
@@ -79,6 +78,9 @@ class Post extends Component {
                         post.publishedDate + " @" + post.owner.id
                     }
                 />
+                <CardContent>
+                    { post.content }
+                </CardContent>
                 <CardMedia
                     component={
                         post.media ? (
@@ -96,9 +98,6 @@ class Post extends Component {
                         )
                     }
                 />
-                <CardContent>
-                    { post.content }
-                </CardContent>
                 <CardActions>
                     empty
                 </CardActions>
@@ -111,7 +110,7 @@ class Post extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteMyPost: (id) => dispatch(deleteMyPost(id)),
+        deleteMyPost: (id) => dispatch(deletePost(id)),
     };
 };
 

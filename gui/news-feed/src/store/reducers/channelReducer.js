@@ -1,11 +1,11 @@
 const initState = {
-    myAccount: {
+    myChannels: {
 
     },
-    account: {
+    channel: {
 
     },
-    accounts: {
+    channels: {
 
     },
     error: ""

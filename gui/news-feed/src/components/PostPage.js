@@ -3,10 +3,14 @@ import { Box } from "@material-ui/core";
 import  { withStyles } from "@material-ui/core";
 import Post from "./Post";
 import {connect} from "react-redux";
-import {deleteMyPost} from "../store/actioncreators/postActions";
+import {deletePost} from "../store/actioncreators/postActions";
 
 const styles = theme => ({
-
+    boxBetweenPostAndPosts: {
+        height: 20,
+        width: "100%",
+        backgroundColor: theme.palette.tertiary.main,
+    }
 });
 
 class PostPage extends Component {
@@ -16,13 +20,12 @@ class PostPage extends Component {
         const postList = posts.map((post) => {
             return posts.length > 0 ? (
                 <Post post={post} />
-            ) : (
-                <p>no post yet</p>
-            )
+            ) : null
         });
         return (
             <Box>
-                <Post />
+                <Post post={post} />
+                <Box className={classes.boxBetweenPostAndPosts}/>
                 { postList }
             </Box>
         );
@@ -38,7 +41,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadPostPagePosts: (id) => dispatch(deleteMyPost(id)),
+        loadPostPagePosts: (id) => dispatch(deletePost(id)),
     };
 };
 

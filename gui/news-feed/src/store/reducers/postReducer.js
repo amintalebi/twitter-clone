@@ -1,6 +1,18 @@
 const initState = {
     post: {
-
+        owner: {
+            name: "اصغر",
+            id: "asghar",
+            icon: "https://picsum.photos/200/200"
+        },
+        chanelID: "",
+        content: "عجب گیری کردیما",
+        publishedDate: "2019/10/9",
+        id: 1,
+        media: {
+            src: "https://picsum.photos/500/700",
+            type: "img", // "" | "img" | "video" : component type
+        },
     },
     posts: [
         {
@@ -14,8 +26,8 @@ const initState = {
             publishedDate: "2019/10/9",
             id: 1,
             media: {
-                src: "https://www.youtube.com/watch?v=XoAPIpOZYA4",
-                type: "video", // "" | "img" | "video" : component type
+                src: "https://picsum.photos/450/300",
+                type: "img", // "" | "img" | "video" : component type
             },
         },
         {

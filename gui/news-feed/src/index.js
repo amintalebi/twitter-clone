@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from "./App";
@@ -37,6 +36,7 @@ const theme = createMuiTheme({
             light: 'rgb(245, 248, 250)',
             main: 'rgb(230, 236, 240)',
             dark: 'rgb(91, 100, 106)',
+            contrastText: 'rgb(101, 119, 134)',
         }
     },
 });
@@ -49,15 +49,6 @@ ReactDOM.render(
             <App />
         </Provider>
     </ThemeProvider>, document.getElementById('root'));
-=======
-import React from "react";
-import ReactDOM from "react-dom";
-import Blog from "./components/Blog";
-import * as serviceWorker from "./serviceWorker";
-import "materialize-css/dist/css/materialize.min.css";
-
-ReactDOM.render(<Blog />, document.getElementById("root"));
->>>>>>> master
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

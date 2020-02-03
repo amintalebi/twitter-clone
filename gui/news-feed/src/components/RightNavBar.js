@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-// import './styles/LeftNavBar.css';
 import { HomeRounded, SearchRounded, NotificationsRounded, MailOutlineRounded, BookmarkBorderRounded,
     FormatListBulletedRounded, AccountCircleRounded, MoreHorizRounded } from '@material-ui/icons';
 import { makeStyles, useMediaQuery, useTheme, styled } from "@material-ui/core";

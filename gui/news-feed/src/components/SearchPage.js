@@ -1,18 +1,39 @@
 import React, {Component} from "react";
-import { Link } from 'react-router-dom';
-import {Paper, IconButton, InputBase, Divider, Hidden, Box} from "@material-ui/core";
-import { CloseRounded, SearchRounded, DirectionsRounded  } from "@material-ui/icons"
+import {Paper, IconButton, InputBase, Hidden, Box} from "@material-ui/core";
+import { CloseRounded, SearchRounded  } from "@material-ui/icons"
 import { withStyles, } from "@material-ui/core/styles";
+import Posts from "./Posts";
+import {deletePost} from "../store/actioncreators/postActions";
+import {connect} from "react-redux";
 
 const styles = theme => ({
     root: {
+
+    },
+    searchRoot: {
         position: "fixed",
         top: 0,
         backgroundColor: "white",
         height: 48,
         zIndex: 2,
+        borderStyle: "solid",
+        borderWidth: 0,
+        borderBottomWidth: 1,
+        borderColor: theme.palette.tertiary.main,
+        boxSizing: "border-box",
+        padding: "0 10px",
+        '@media only screen and (max-width: 600px)': {
+            width: "calc(100vw - 68px - 2px)",
+        },
+        '@media only screen and (min-width: 600px) and (max-width: 988px)': {
+            width: "calc(100vw - 88px - 2px)",
+            maxWidth: 598,
+        },
+        '@media only screen and (min-width: 988px)': {
+            width: 598,
+        },
     },
-    distanceProviderBox: {
+    distanceProviderRoot: {
         height: 48,
     },
     paperRoot: {
@@ -23,12 +44,12 @@ const styles = theme => ({
         backgroundColor: theme.palette.tertiary.main,
         height: 38,
         marginTop: theme.spacing(1),
-        '@media only screen and (min-width: 988px) and (max-width: 1078px)': {
-            width: 290,
-        },
-        '@media only screen and (min-width: 1078px)': {
-            width: 350,
-        },
+        // '@media only screen and (min-width: 988px) and (max-width: 1078px)': {
+        //     width: 290,
+        // },
+        // '@media only screen and (min-width: 1078px)': {
+        //     width: 350,
+        // },
     },
     input: {
         marginLeft: theme.spacing(1),
@@ -46,18 +67,9 @@ const styles = theme => ({
             backgroundColor: theme.palette.primary.dark,
         },
     },
-    searchResult: {
-        position: "absolute",
-        '@media only screen and (min-width: 988px) and (max-width: 1078px)': {
-            width: 290,
-        },
-        '@media only screen and (min-width: 1078px)': {
-            width: 350,
-        },
-    },
 });
 
-class LeftSideBarSearch extends Component {
+class SearchPageSearchField extends Component {
     state = {
         search: "",
     };
@@ -76,15 +88,15 @@ class LeftSideBarSearch extends Component {
         const { classes } = this.props;
         const  { state } = this;
         return (
-            <Hidden xsDown>
-                <Box className={classes.root}>
+            <Box className={classes.root}>
+                <Box className={classes.searchRoot}>
                     <Paper classes={{root: classes.paperRoot}} id="search-field-parent" elevation={0}>
                         <IconButton type="submit" className={classes.searchIconButton} disabled>
                             <SearchRounded />
                         </IconButton>
                         <InputBase
                             className={classes.input}
-                            placeholder="جست‌و‌جو"
+                            placeholder="جست‌و‌جو در پست ها"
                             onInput={this.searchHandler}
                             value={state.search}
                         />
@@ -94,15 +106,25 @@ class LeftSideBarSearch extends Component {
                             </IconButton>
                         ) : null}
                     </Paper>
-                    {state.search ? (
-                        <Paper elevation={1} className={classes.searchResult}>
-                            dwq
-                        </Paper>
-                    ) : null}
                 </Box>
-                <Box className={classes.distanceProviderBox}/>
-            </Hidden>
+                <Box className={classes.distanceProviderRoot}/>
+                {state.search ? (
+                    <Posts />
+                ) : null}
+            </Box>
         );
     }
 }
-export default withStyles(styles)(LeftSideBarSearch);
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadPostPagePosts: (id) => dispatch(deletePost(id)),
+    };
+};
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(SearchPageSearchField));

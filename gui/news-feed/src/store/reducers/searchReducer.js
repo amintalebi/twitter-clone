@@ -1,6 +1,10 @@
 const initState = {
-    searchText: "",
-    searchResults: [
+    searchInAccountsAndChannelsText: "",
+    searchInAccountsAndChannelsResults: [
+
+    ],
+    searchInPostsText: "",
+    searchInPostsResults: [
 
     ],
 };
