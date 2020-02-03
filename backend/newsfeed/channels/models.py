@@ -11,7 +11,7 @@ class Channel(models.Model):
     is_personal = models.BooleanField()
 
     def __str__(self):
-        return str(self.id) + ' ' + self.name
+        return str(self.id) + ': ' + self.name
 
 
 class ChannelAdmin(models.Model):
