@@ -13,9 +13,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserSignUpSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
-    first_name = serializers.CharField(write_only=True, required=True)
-    last_name = serializers.CharField(write_only=True, required=False)
-    email = serializers.EmailField(write_only=True, required=False)
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
@@ -23,11 +20,11 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         if password is not None:
             instance.set_password(password)
         instance.save()
-        return instance
+        return super().create(validated_data)
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'first_name', 'last_name', 'email')
+        fields = ('username', 'password', 'first_name', 'email')
 
 
 class ProfileReadSerializer(serializers.ModelSerializer):
