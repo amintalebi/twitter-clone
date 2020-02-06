@@ -13,19 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'کپی رایت'}
-      <Link color="inherit" href="https://material-ui.com/">
-        اخبار
-      </Link>{' '}
-      {"1398"}
-      {'.'}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -48,6 +35,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [values, setValues] = React.useState({
+    name: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (e) => {
+    setValues({ ...values, [prop]: e.target.value });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,7 +59,7 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -71,17 +69,8 @@ export default function SignUp() {
                 id="firstName"
                 label="نام"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="نام خانوادگی"
-                name="lastName"
-                autoComplete="lname"
+                value={values.name}
+                onChange={handleChange("name")}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +82,8 @@ export default function SignUp() {
                 label="آدرس ایمیل"
                 name="email"
                 autoComplete="email"
+                value={values.email}
+                onChange={handleChange("email")}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,12 +96,22 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={values.password}
+                onChange={handleChange("password")}
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="عضویت در هفته نامه."
+              <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="تکرار گذرواژه"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={values.repeatPassword}
+                  onChange={handleChange("repeatPassword")}
               />
             </Grid>
           </Grid>
@@ -132,9 +133,6 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

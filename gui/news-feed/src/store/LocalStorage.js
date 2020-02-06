@@ -1,26 +1,23 @@
-import axios from 'axios';
+import API from "./API";
 
 
 export class LocalStorage {
-    getAuthorisationKey() {
+
+    async getAuthorisationKey() {
         let key = window.localStorage.getItem('authKey');
         let config = {
             headers: {
-
+              "Content-Type": "application/json"
+            },
+            body: {
+                "token": key
             }
         }
-        axios.get('/accounts/signup/', )
-            .then(function (response) {
-                // handle success
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
+        let res = await API.get('verify-token', config)
+        console.log(res)
         return key;
     }
 }
+
+
+
