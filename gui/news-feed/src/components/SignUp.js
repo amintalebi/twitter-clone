@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {deletePost} from "../store/actioncreators/postActions";
+import {withStyles} from "@material-ui/core";
+import {connect} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -136,3 +139,18 @@ export default function SignUp() {
     </Container>
   );
 }
+
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    account: state.account.myAccount,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadPostPagePosts: (id) => dispatch(deletePost(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfileModal);
