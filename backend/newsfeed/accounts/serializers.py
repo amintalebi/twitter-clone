@@ -20,7 +20,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         if password is not None:
             instance.set_password(password)
         instance.save()
-        return super().create(validated_data)
+        return instance
 
     class Meta:
         model = User
