@@ -13,6 +13,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserSignUpSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
+    first_name = serializers.CharField(write_only=True, required=True)
+    last_name = serializers.CharField(write_only=True, required=False)
+    email = serializers.EmailField(write_only=True, required=False)
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
@@ -24,7 +27,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username', 'password', 'first_name', 'last_name', 'email')
 
 
 class ProfileReadSerializer(serializers.ModelSerializer):
