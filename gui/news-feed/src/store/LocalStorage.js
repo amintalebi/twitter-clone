@@ -4,9 +4,12 @@ import axios from 'axios';
 export class LocalStorage {
     getAuthorisationKey() {
         let key = window.localStorage.getItem('authKey');
-        let params = {};
-        let header = {};
-        axios.get('/accounts/signup/', params, null)
+        let config = {
+            headers: {
+
+            }
+        }
+        axios.get('/accounts/signup/', )
             .then(function (response) {
                 // handle success
                 console.log(response);
