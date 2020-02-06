@@ -11,17 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username',)
 
 
-class UserSerializerWithToken(serializers.ModelSerializer):
-    token = serializers.SerializerMethodField()
-    password = serializers.CharField(write_only=True)
-
-    def get_token(self, obj):
-        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-
-        payload = jwt_payload_handler(obj)
-        token = jwt_encode_handler(payload)
-        return token
+class UserSignUpSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True)
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
@@ -33,7 +24,7 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('token', 'username', 'password')
+        fields = ('username', 'password')
 
 
 class ProfileReadSerializer(serializers.ModelSerializer):
