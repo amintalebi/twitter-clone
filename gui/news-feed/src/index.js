@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
 import { ThemeProvider } from "@material-ui/core";
 import { createMuiTheme} from "@material-ui/core/styles";
+import {faIR} from "@material-ui/core/locale";
 
 const theme = createMuiTheme({
     breakpoints: {
@@ -39,7 +40,8 @@ const theme = createMuiTheme({
             contrastText: 'rgb(101, 119, 134)',
         }
     },
-});
+    direction: 'rtl',
+}, faIR);
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

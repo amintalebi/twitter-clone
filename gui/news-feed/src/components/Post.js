@@ -47,7 +47,7 @@ const styles = theme => ({
     },
     img: {
         height: 220,
-    }
+    },
 });
 
 class Post extends Component {

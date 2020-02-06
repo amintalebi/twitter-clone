@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import { Switch } from "react-router-dom";
-import Main from './components/Main';
-import LeftSideBar from "./components/LeftSideBar";
-import RightSideBar from "./components/RightSideBar";
-import { Grid, Hidden, Box  } from "@material-ui/core"
 import { withStyles } from "@material-ui/core";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
