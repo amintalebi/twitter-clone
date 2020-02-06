@@ -11,10 +11,12 @@ import {
     Typography,
     CardContent,
     IconButton,
-    Box, InputBase
+    Box,
+    InputBase,
+    Divider,
 } from "@material-ui/core";
 import  { withStyles } from "@material-ui/core";
-import { MenuRounded } from "@material-ui/icons";
+import {AddPhotoAlternateRounded, FormatBoldRounded, FormatItalicRounded, MenuRounded} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
@@ -39,8 +41,34 @@ const styles = theme => ({
     img: {
         height: 220,
     },
+    cardAction: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
     imageInput: {
         display: "none",
+    },
+    saveButton: {
+        borderRadius: 100,
+        color: "white",
+        backgroundColor: theme.palette.primary.main,
+        height: 35,
+        padding: theme.spacing(0, 2),
+        "&:hover": {
+            backgroundColor: theme.palette.primary.dark,
+        },
+    },
+    iconButton: {
+        color: theme.palette.primary.main,
+        backgroundColor: "transparent",
+        "&:hover": {
+            backgroundColor: theme.palette.primary.light,
+        },
+        boxSizing: "border-box",
+        width: 35,
+        height: 35,
+        marginLeft: theme.spacing(1),
     },
 });
 
@@ -48,6 +76,8 @@ class CreatePost extends Component {
     state = {
         content: "",
         image: "",
+        bold: false,
+        italic: false,
     };
 
     textInputOnChangeHandler = (e) => {
@@ -56,9 +86,8 @@ class CreatePost extends Component {
         });
     };
 
-    loadImage = (e) => {
+    loadImageButton = (e) => {
         let reader = new FileReader();
-        console.log(this.state)
         reader.onload = () => {
             this.setState({
                 image: reader.result,
@@ -67,13 +96,19 @@ class CreatePost extends Component {
         reader.readAsDataURL(e.target.files[0]);
     };
 
+    removeImage = (e) => {
+        this.setState({
+            image: "",
+        });
+    };
+
     render() {
         const { classes, myAccount } = this.props;
-        const { content, image } = this.state;
+        const { content, image, bold, italic } = this.state;
         return (
             <Card variant="outlined" classes={{root: classes.root}}>
                 <CardHeader
-                    classes={{avatar: classes.avatar, title: classes.title, subheader: classes.subheader}}
+                    classes={{avatar: classes.avatar}}
                     avatar={
                         <Avatar
                             aria-label="recipe"
@@ -81,39 +116,55 @@ class CreatePost extends Component {
                             src={ myAccount.icon }
                         />
                     }
-                    title={
-                        <InputBase
-                            multiline
-                            rowsMax="3"
-                            className={classes.contentInput}
-                            placeholder="هرچه دل تنگت می‌خواهد بگو!"
-                            onInput={this.textInputOnChangeHandler}
-                            value={content}
-                        />
-                    }
                 />
+                <CardContent>
+                    <InputBase
+                        multiline
+                        rowsMax="3"
+                        className={classes.contentInput}
+                        placeholder="هرچه دل تنگت می‌خواهد بگو!"
+                        onInput={this.textInputOnChangeHandler}
+                        value={content}
+                    />
+                </CardContent>
                 <CardMedia
                     component= {image ?  "img" : "div"}
                     classes={{root: classes.mediaRoot, img: classes.img}}
                     image={ image }
                 />
-                <CardActions>
-                    <input
-                        onChange={this.loadImage}
-                        accept="image/*"
-                        className={classes.imageInput}
-                        id="outlined-button-file"
-                        multiple
-                        type="file"
-                    />
-                    <label htmlFor="outlined-button-file">
-                        <Button variant="outlined" component="span" >
-                            عکس
+                <CardActions className={classes.cardAction}>
+                    <Box>
+                        <Button component="span" color="primary" className={classes.saveButton}>
+                            ذخیره کردن
                         </Button>
-                    </label>
-                    <Button variant="outlined" component="span" >
-                        ذخیره کردن
-                    </Button>
+                    </Box>
+                    <Box>
+                        <input
+                            onChange={this.loadImageButton}
+                            accept="image/*"
+                            className={classes.imageInput}
+                            id="outlined-button-file"
+                            multiple
+                            type="file"
+                        />
+                        <label htmlFor="outlined-button-file">
+                            <IconButton
+                                color="primary"
+                                component="span"
+                                className={classes.iconButton}
+                            >
+                                <AddPhotoAlternateRounded fontSize="medium"/>
+                            </IconButton>
+                        </label>
+                        {
+                            image ? (
+                                <Button color="primary" className={classes.saveButton} onClick={this.removeImage}>
+                                    حذف عکس
+                                </Button>
+                            ) : null
+                        }
+                    </Box>
+
                 </CardActions>
             </Card>
         );

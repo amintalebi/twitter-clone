@@ -13,14 +13,20 @@ import {
     Avatar,
     CardActions,
     Fab,
-    styled
+    styled, CardContent, Button
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
-import {KeyboardBackspaceRounded, MenuRounded} from "@material-ui/icons";
+import {
+    KeyboardBackspaceRounded,
+    MenuRounded,
+    NotificationsNoneRounded,
+    NotificationsRounded
+} from "@material-ui/icons";
 import {deletePost} from "../store/actioncreators/postActions";
 import {connect} from "react-redux";
 import rootReducer from "../store/reducers/rootReducer";
 import ProfileTabs from "./ProfileTabs";
+import ToggleIcon from "material-ui-toggle-icon";
 
 const styles = theme => ({
     root: {
@@ -70,28 +76,31 @@ const styles = theme => ({
     backgroundImage: {
         height: 220,
     },
-    avatar: {
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(0),
+    avatarWrapper: {
+        // marginLeft: theme.spacing(2),
+        // marginRight: theme.spacing(0),
 
     },
-    avatarInner: {
+    avatar: {
         position: "relative",
-        bottom: theme.spacing(10),
-        width: theme.spacing(14),
-        height: theme.spacing(14),
+        bottom: "calc(60px + 5px + 16px)",
+        width: "120px",
+        height: "120px",
         borderStyle: "solid",
-        borderWidth: theme.spacing(0.6),
+        borderWidth: "5px",
         borderColor: "white",
-        '@media only screen and (min-width: 388px) and (max-width: 600px)': {
-            width: "calc((100vw - 68px) / 9 + 40px)",
-            height: "calc((100vw - 68px) / 9 + 40px)",
-            bottom: "85px",
+        '@media only screen and (max-width: 600px)': {
+            width: "calc(15vw + 30px)",
+            height: "calc(15vw + 30px)",
+            borderWidth: "calc(100vw / 120)",
+            bottom: "calc((7.5vw + 15px) + (100vw / 120) + 16px)",
         },
-        '@media only screen and (max-width: 388px)': {
-            width: "calc((100vw - 68px) / 9 + 40px)",
-            height: "calc((100vw - 68px) / 9 + 40px)",
-            bottom: "150px",
+    },
+    headerAction: {
+        '@media only screen and (max-width: 350px)': {
+            position: "relative",
+            top: 70,
+            left: "45%",
         },
     },
     title: {
@@ -120,36 +129,46 @@ const styles = theme => ({
         direction: "ltr",
         color: theme.palette.primary.contrastText,
     },
-    items: { //todo more style for focus
-        position: "relative",
-        top: 0,
-        boxShadow: "none",
-        backgroundColor: "transparent",
-        outline: "none",
-        fontSize: 19,
-        height: 50,
+    actionButtonOn: {
         borderRadius: 100,
-        '&:hover': {
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.primary.dark,
-        },
-        "&:focus": {
-            boxShadow: "none",
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        "&:hover": {
+            backgroundColor: theme.palette.error.dark,
         },
         boxSizing: "border-box",
-        border: "1px solid",
-        borderColor: theme.palette.primary.dark,
-        color: theme.palette.primary.dark,
-        '@media only screen and (max-width: 295px)': {
-            left: "calc(16px + 20vw)",
-        },
+        height: 35,
     },
-    extendedText: {
-        margin: 0,
-        marginLeft: theme.spacing(0),
-        padding: 0,
-        marginRight: theme.spacing(0),
-        fontSizing: 15,
+    actionButtonOff: {
+        borderRadius: 100,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: theme.palette.primary.main,
+        boxSizing: "border-box",
+        height: 35,
+    },
+    alertButtonOn: {
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        boxSizing: "border-box",
+        height: 35,
+        width: 35,
+        padding: 1,
+        marginLeft: theme.spacing(1),
+        "&:hover": {
+            backgroundColor: theme.palette.primary.dark,
+        }
+    },
+    alertButtonOff: {
+        color: theme.palette.primary.main,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: theme.palette.primary.main,
+        boxSizing: "border-box",
+        height: 35,
+        width: 35,
+        padding: 1,
+        marginLeft: theme.spacing(1),
     },
     following: {
         display: "flex",
@@ -165,17 +184,39 @@ const styles = theme => ({
 });
 
 class ProfilePage extends Component {
-
+    state = {
+        mine: false,
+        admin: false,
+        followed: true,
+        notification: false,
+        editModalOpen: false,
+        rules: [],
+    };
+    handleCloseEditProfileModal = (e) => {
+        this.setState({
+            editModalOpen: false,
+        })
+    };
+    handleEditProfileButtonClick = (e) => {
+        this.setState({
+            editModalOpen: true,
+        })
+    };
+    handleFollowButtonClick = (e) => {
+        this.setState({
+            followed: !this.state.followed,
+        })
+    };
+    handleNotificationButtonClick = (e) =>  {
+        this.setState({
+            notification: !this.state.notification,
+        })
+    };
 
     render() {
         const { classes } = this.props;
-        const  { mine, followed } = { min: true, followed: false };
-        const onEditProfileButtonClick = (e) => {
+        const  { admin, mine, followed, notification, editModalOpen, rules } = this.state;
 
-        };
-        const onFollowButtonClick = (e) => {
-
-        };
         return (
             <Box className={classes.root}>
                 <Box  display="flex" justifyContent="flex-start" alignItems="center"  className={classes.backBar}>
@@ -198,59 +239,79 @@ class ProfilePage extends Component {
                         classes={{root: classes.backgroundImage}}
                     />
                     <CardHeader
-                        classes={{avatar: classes.avatar, title: classes.title, subheader: classes.subheader}}
+                        classes={{root: classes.cardHeaderRoot, avatar: classes.avatarWrapper, action: classes.headerAction}}
                         avatar={
                             <Avatar
-                                classes={{root: classes.avatarInner}}
+                                classes={{root: classes.avatar}}
                                 aria-label="recipe"
                                 alt={ "" }
                                 src={ "https://picsum.photos/300/300" }
                             />
                         }
                         action={
-                            <Box
-                                onClick={
-                                    mine ? (
-                                        onEditProfileButtonClick
-                                    ) : (
-                                        onFollowButtonClick
-                                    )
-                                }
-                            >
-                                <Fab size="medium" variant="extended" color="primary" classes={{root: classes.items}}>
-                                    <Typography classes={{root: classes.extendedText}}>
-                                        {
-                                            mine ? (
-                                                "تغییر پروفایل"
-                                            ) : (
-                                                followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
-                                            )
-                                        }
-                                    </Typography>
-                                </Fab>
-                            </Box>
-                        }
-                        title={
                             <Box>
-                                <Typography classes={{root: classes.titleNameTypo}}>
-                                    { "سر به داران" }
-                                </Typography>
-                                <Typography classes={{root: classes.titleIDTypo}}>
-                                    { " @" + "sarbed" }
-                                </Typography>
-                                <Typography classes={{root: classes.titleNameTypo}}>
-                                    { "سازنده: " + "علی"}
-                                </Typography>
-                                <Typography classes={{root: classes.titleIDTypo}}>
-                                    { " @" + "ali_j1" }
-                                </Typography>
+                                {
+                                    (!mine && followed) ? (
+                                        <IconButton
+                                            onClick={this.handleNotificationButtonClick}
+                                            className={ notification ? classes.alertButtonOn : classes.alertButtonOff }
+                                        >
+                                            <ToggleIcon
+                                                on={notification}
+                                                onIcon={<NotificationsRounded />}
+                                                offIcon={<NotificationsNoneRounded />}
+                                            />
+                                        </IconButton>
+                                    ) : null
+                                }
+                                <Button
+                                    color="primary"
+                                    classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
+                                    onClick={
+                                        mine ? (
+                                            this.handleEditProfileButtonClick
+                                        ) : (
+                                            this.handleFollowButtonClick
+                                        )
+                                    }
+                                >
+                                    {
+                                        mine ? (
+                                            "تنظیمات"
+                                        ) : (
+                                            followed ? "دنبال نکردن" : "دنبال کردن"
+                                        )
+                                    }
+                                </Button>
                             </Box>
-
-                        }
-                        subheader={
-                            "چه خبر؟ خبری نیست! نمیدونم شایدم باشه"
                         }
                     />
+                    <CardContent>
+                        <Box>
+                            <Typography classes={{root: classes.titleNameTypo}}>
+                                { "سر به داران" }
+                            </Typography>
+                            <Typography classes={{root: classes.titleIDTypo}}>
+                                { " @" + "sarbed" }
+                            </Typography>
+                            <Typography classes={{root: classes.titleNameTypo}}>
+                                { "سازنده: " + "علی"}
+                            </Typography>
+                            <Typography classes={{root: classes.titleIDTypo}}>
+                                { " @" + "ali_j1" }
+                            </Typography>
+                            <Typography>
+                                قوانین:
+                                {
+                                    rules.map((rule, index) =>
+                                        <Typography>
+                                            {index + ": " + rule}
+                                        </Typography>
+                                    )
+                                }
+                            </Typography>
+                        </Box>
+                    </CardContent>
                     <CardActions>
                         <Typography classes={{root: classes.following}}>
                             <p className={classes.followingNumber}>

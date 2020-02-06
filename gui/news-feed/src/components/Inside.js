@@ -123,6 +123,7 @@ class Inside extends Component {
                 <Box className={classes.mainPage}>
                     <Switch>
                         <Route path='/channel/:id' component={ ChannelPage } />
+                        <Route path='/profile' component={ ProfilePage } />
                         <Route path='/profile/:id' component={ ProfilePage } />
                         <Route path='/search' component={ SearchPage } />
                         <Route path='/post/:id' component={ PostPage } />
