@@ -17,12 +17,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('token/', TokenObtainPairView.as_view(), name="token"),
     path('refresh-token', TokenRefreshView.as_view(), name="refresh-token"),
+    path('verify-token', TokenVerifyView.as_view()),
     path('accounts/', include('accounts.urls')),
     path('posts/', include('posts.urls')),
     path('events/', include('events.urls'))
