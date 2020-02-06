@@ -9,14 +9,22 @@ const initState = {
     accounts: {
 
     },
-    error: ""
+    message: {
+        result: null,
+        error: "",
+    }
 };
 
 
 function accountReducer(state = initState, action) {
     switch (action.type) {
-        case 'SIGN_IN':
-
+        case 'RESPONSE':
+            return (
+                {
+                    ...state,
+                    message: action.response,
+                }
+            );
         case "DELETE_POST":
             alert(action.type+ " " +action.id);
             return (

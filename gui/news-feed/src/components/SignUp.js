@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,8 +15,10 @@ import Container from '@material-ui/core/Container';
 import {deletePost} from "../store/actioncreators/postActions";
 import {withStyles} from "@material-ui/core";
 import {connect} from "react-redux";
+import {signUp} from "../store/actioncreators/accountAction";
+import {withRouter} from "react-router";
 
-const useStyles = makeStyles(theme => ({
+const styles =theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -34,123 +36,170 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+});
 
-export default function SignUp() {
-  const classes = useStyles();
-  const [values, setValues] = React.useState({
+class SignUp extends Component{
+  state = {
     name: '',
+    userName: '',
     email: '',
     password: '',
     repeatPassword: '',
     showPassword: false,
-  });
-
-  const handleChange = (prop) => (e) => {
-    setValues({ ...values, [prop]: e.target.value });
   };
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          ثبت نام
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="نام"
-                autoFocus
-                value={values.name}
-                onChange={handleChange("name")}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="آدرس ایمیل"
-                name="email"
-                autoComplete="email"
-                value={values.email}
-                onChange={handleChange("email")}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="گذرواژه"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={values.password}
-                onChange={handleChange("password")}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                  variant="outlined"
-                  required
+  handleChange = (prop) => (e) => {
+    this.setState({
+      [prop]: e.target.value
+    });
+  };
+
+  signUp = (e) => {
+    if (this.state.password !== this.state.repeatPassword) {
+      alert("پسورد ها متفاوت اند")
+    }
+    else {
+      this.props.signUp(this.state.name, this.state.userName, this.state.email, this.state.password);
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.message !== prevProps.message) {
+      console.log("component did update")
+      console.log(prevProps)
+      console.log(this.props)
+      if (this.props.message.result) {
+        alert("با موفقیت ثبت نام شدید");
+        this.props.history.push("sign-in")
+      }
+      else alert(this.props.result.error)
+    }
+  }
+
+  render() {
+    const {classes} = this.props;
+    const {name,
+      userName,
+      email,
+      password,
+      repeatPassword,
+      showPassword} = this.state
+    return (
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              ثبت نام
+            </Typography>
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                      autoComplete="fname"
+                      name="firstName"
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="firstName"
+                      label="نام کاربری"
+                      autoFocus
+                      value={name}
+                      onChange={this.handleChange("name")}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                      autoComplete="fname"
+                      name="firstName"
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="firstName"
+                      label="شناسه کاربری"
+                      autoFocus
+                      value={userName}
+                      onChange={this.handleChange("userName")}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="email"
+                      label="آدرس ایمیل"
+                      name="email"
+                      autoComplete="email"
+                      value={email}
+                      onChange={this.handleChange("email")}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="password"
+                      label="گذرواژه"
+                      type="password"
+                      id="password"
+                      autoComplete="current-password"
+                      value={password}
+                      onChange={this.handleChange("password")}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="password"
+                      label="تکرار گذرواژه"
+                      type="password"
+                      id="password"
+                      autoComplete="current-password"
+                      value={repeatPassword}
+                      onChange={this.handleChange("repeatPassword")}
+                  />
+                </Grid>
+              </Grid>
+              <Button
                   fullWidth
-                  name="password"
-                  label="تکرار گذرواژه"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={values.repeatPassword}
-                  onChange={handleChange("repeatPassword")}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            ثبت نام
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                حساب کاربری دارید؟ وارد شوید
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
-  );
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={this.signUp}
+              >
+                ثبت نام
+              </Button>
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    حساب کاربری دارید؟ وارد شوید
+                  </Link>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </Container>
+    );
+  }
 }
 
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    account: state.account.myAccount,
+    message: state.account.message,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadPostPagePosts: (id) => dispatch(deletePost(id)),
+    signUp: (name, userName, email, password) => dispatch(signUp(name, userName, email, password)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfileModal);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(withRouter(SignUp)));
