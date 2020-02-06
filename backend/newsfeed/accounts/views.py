@@ -17,15 +17,9 @@ def current_user(request):
     return Response(serializer.data)
 
 
-class SignUp(APIView):
+class SignUp(generics.CreateAPIView):
     permission_classes = (permissions.AllowAny,)
-
-    def post(self, request, format=None):
-        serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer_class = UserSignUpSerializer
 
 
 class ProfileView(generics.RetrieveAPIView):
