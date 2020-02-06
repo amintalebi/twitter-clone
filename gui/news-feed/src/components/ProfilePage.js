@@ -13,13 +13,25 @@ import {
     Avatar,
     CardActions,
     Fab,
-    styled, Modal
+    styled,
+    Modal,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    Button, CardContent,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
-import { KeyboardBackspaceRounded } from "@material-ui/icons";
+import {
+    CloseRounded,
+    KeyboardBackspaceRounded,
+    NotificationsNoneRounded,
+    NotificationsRounded
+} from "@material-ui/icons";
 import {deletePost} from "../store/actioncreators/postActions";
 import {connect} from "react-redux";
 import ProfileTabs from "./ProfileTabs";
+import EditProfileModal from "./EditProfileModal";
+import ToggleIcon from 'material-ui-toggle-icon';
 
 const styles = theme => ({
     root: {
@@ -69,36 +81,34 @@ const styles = theme => ({
     backgroundImage: {
         height: 220,
     },
+    cardHeaderRoot: {
+        // height: 0,
+    },
+    avatarWrapper: {
+        // marginLeft: theme.spacing(2),
+        // marginRight: theme.spacing(0),
+        // position: "absolute",
+    },
     avatar: {
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(0),
-
-    },
-    avatarInner: {
         position: "relative",
-        bottom: theme.spacing(10),
-        width: theme.spacing(14),
-        height: theme.spacing(14),
+        bottom: "calc(60px + 5px + 16px)",
+        width: "120px",
+        height: "120px",
         borderStyle: "solid",
-        borderWidth: theme.spacing(0.6),
+        borderWidth: "5px",
         borderColor: "white",
-        '@media only screen and (min-width: 388px) and (max-width: 600px)': {
-            width: "calc((100vw - 68px) / 9 + 40px)",
-            height: "calc((100vw - 68px) / 9 + 40px)",
-            bottom: "70px",
-        },
-        '@media only screen and (max-width: 388px)': {
-            width: "calc((100vw - 68px) / 9 + 40px)",
-            height: "calc((100vw - 68px) / 9 + 40px)",
-            bottom: "100px",
+        '@media only screen and (max-width: 600px)': {
+            width: "calc(15vw + 30px)",
+            height: "calc(15vw + 30px)",
+            borderWidth: "calc(100vw / 120)",
+            bottom: "calc((7.5vw + 15px) + (100vw / 120) + 16px)",
         },
     },
-    title: {
-        position: "relative",
-        left: theme.spacing(17),
-        top: theme.spacing(6),
-        '@media only screen and (max-width: 600px)': {
-            left: "calc(110px - 60px + 10vw)",
+    headerAction: {
+        '@media only screen and (max-width: 350px)': {
+           position: "relative",
+            top: 70,
+            left: "45%",
         },
     },
     titleNameTypo: {
@@ -119,29 +129,46 @@ const styles = theme => ({
         direction: "ltr",
         color: theme.palette.primary.contrastText,
     },
-    items: { //todo more style for focus
-        position: "relative",
-        top: 4,
-        boxShadow: "none",
-        backgroundColor: "transparent",
-        outline: "none",
-        fontSize: 19,
-        height: 50,
+    actionButtonOn: {
         borderRadius: 100,
-        '&:hover': {
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.primary.dark,
-        },
-        "&:focus": {
-            boxShadow: "none",
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        "&:hover": {
+            backgroundColor: theme.palette.error.dark,
         },
         boxSizing: "border-box",
-        border: "1px solid",
-        borderColor: theme.palette.primary.dark,
-        color: theme.palette.primary.dark,
-        '@media only screen and (max-width: 350px)': {
-            left: "calc(245px - 70vw)",
-        },
+        height: 35,
+    },
+    actionButtonOff: {
+        borderRadius: 100,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: theme.palette.primary.main,
+        boxSizing: "border-box",
+        height: 35,
+    },
+    alertButtonOn: {
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        boxSizing: "border-box",
+        height: 35,
+        width: 35,
+        padding: 1,
+        marginLeft: theme.spacing(1),
+        "&:hover": {
+            backgroundColor: theme.palette.primary.dark,
+        }
+    },
+    alertButtonOff: {
+        color: theme.palette.primary.main,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: theme.palette.primary.main,
+        boxSizing: "border-box",
+        height: 35,
+        width: 35,
+        padding: 1,
+        marginLeft: theme.spacing(1),
     },
     extendedText: {
         margin: 0,
@@ -168,22 +195,46 @@ const styles = theme => ({
     },
 });
 
+function getModalStyle() {
+
+    return {
+        top: `50%`,
+        left: `50%`,
+        transform: `translate(-50%, -$50%)`,
+    };
+}
+
 class ProfilePage extends Component {
     state = {
         mine: true,
         followed: false,
-        editModalOpen: true,
+        notification: false,
+        editModalOpen: false,
     };
 
+    handleCloseEditProfileModal = (e) => {
+        this.setState({
+            editModalOpen: false,
+        })
+    };
+    handleEditProfileButtonClick = (e) => {
+        this.setState({
+            editModalOpen: true,
+        })
+    };
+    handleFollowButtonClick = (e) => {
+        this.setState({
+            followed: !this.state.followed,
+        })
+    };
+    handleNotificationButtonClick = (e) =>  {
+        this.setState({
+            notification: !this.state.notification,
+        })
+    };
     render() {
         const { classes } = this.props;
-        const  { mine, followed, editModalOpen } = this.state;
-        const onEditProfileButtonClick = (e) => {
-
-        };
-        const onFollowButtonClick = (e) => {
-
-        };
+        const  { mine, followed, notification, editModalOpen } = this.state;
         return (
             <Box className={classes.root}>
                 <Box  display="flex" justifyContent="flex-start" alignItems="center"  className={classes.backBar}>
@@ -206,53 +257,64 @@ class ProfilePage extends Component {
                         classes={{root: classes.backgroundImage}}
                     />
                     <CardHeader
-                        classes={{avatar: classes.avatar, title: classes.title, subheader: classes.subheader}}
+                        classes={{root: classes.cardHeaderRoot, avatar: classes.avatarWrapper, action: classes.headerAction}}
                         avatar={
                             <Avatar
-                                classes={{root: classes.avatarInner}}
+                                classes={{root: classes.avatar}}
                                 aria-label="recipe"
                                 alt={ "" }
                                 src={ "https://picsum.photos/300/300" }
                             />
                         }
                         action={
-                            <Box
-                                 onClick={
-                                     mine ? (
-                                         onEditProfileButtonClick
-                                     ) : (
-                                         onFollowButtonClick
-                                     )
-                                 }
-                            >
-                                <Fab size="medium" variant="extended" color="primary" classes={{root: classes.items}}>
-                                    <Typography classes={{root: classes.extendedText}}>
-                                        {
-                                            mine ? (
-                                                "تغییر پروفایل"
-                                            ) : (
-                                                followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
-                                            )
-                                        }
-                                    </Typography>
-                                </Fab>
-                            </Box>
-                        }
-                        title={
                             <Box>
-                                <Typography classes={{root: classes.titleNameTypo}}>
-                                    { "علی" }
-                                </Typography>
-                                <Typography classes={{root: classes.titleIDTypo}}>
-                                    { " @" + "ali_j1" }
-                                </Typography>
+                                {
+                                    (!mine && followed) ? (
+                                        <IconButton
+                                            onClick={this.handleNotificationButtonClick}
+                                            className={ notification ? classes.alertButtonOn : classes.alertButtonOff }
+                                        >
+                                            <ToggleIcon
+                                                on={notification}
+                                                onIcon={<NotificationsRounded />}
+                                                offIcon={<NotificationsNoneRounded />}
+                                            />
+                                        </IconButton>
+                                    ) : null
+                                }
+                                <Button
+                                    color="primary"
+                                    classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
+                                    onClick={
+                                        mine ? (
+                                            this.handleEditProfileButtonClick
+                                        ) : (
+                                            this.handleFollowButtonClick
+                                        )
+                                    }
+                                >
+                                    {
+                                        mine ? (
+                                            "تغییر پروفایل"
+                                        ) : (
+                                            followed ? "دنبال نکردن" : "دنبال کردن"
+                                        )
+                                    }
+                                </Button>
                             </Box>
-
-                        }
-                        subheader={
-                            "چه خبر؟ خبری نیست! نمیدونم شایدم باشه"
                         }
                     />
+                    <CardContent>
+                        <Box>
+                            <Typography classes={{root: classes.titleNameTypo}}>
+                                { "علی" }
+                            </Typography>
+                            <Typography classes={{root: classes.titleIDTypo}}>
+                                { " @" + "ali_j1" }
+                            </Typography>
+                            "چه خبر؟ خبری نیست! نمیدونم شایدم باشه"
+                        </Box>
+                    </CardContent>
                     <CardActions>
                         <Typography classes={{root: classes.following}}>
                             <p className={classes.followingNumber}>
@@ -270,13 +332,7 @@ class ProfilePage extends Component {
                 </Card>
                 <ProfileTabs/>
                 <Posts />
-                <Modal
-                    open={editModalOpen}
-                >
-                    <Box>
-
-                    </Box>
-                </Modal>
+                <EditProfileModal open={editModalOpen} onClose={ this.handleCloseEditProfileModal }/>
             </Box>
         );
     }

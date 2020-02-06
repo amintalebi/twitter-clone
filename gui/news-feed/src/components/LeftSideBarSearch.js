@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {Paper, IconButton, InputBase, Divider, Hidden, Box} from "@material-ui/core";
 import { CloseRounded, SearchRounded, DirectionsRounded  } from "@material-ui/icons"
 import { withStyles, } from "@material-ui/core/styles";
+import Accounts from "./Accounts";
 
 const styles = theme => ({
     root: {
@@ -54,6 +55,8 @@ const styles = theme => ({
         '@media only screen and (min-width: 1078px)': {
             width: 350,
         },
+        maxHeight: "50vh",
+        overflowY: "scroll",
     },
 });
 
@@ -95,9 +98,11 @@ class LeftSideBarSearch extends Component {
                         ) : null}
                     </Paper>
                     {state.search ? (
-                        <Paper elevation={1} className={classes.searchResult}>
-                            dwq
+                        <Paper elevation={1} className={classes.searchResult} id="infiniteScrollSmallSearchBar">
+                            <Accounts scrollableTargetID={"infiniteScrollSmallSearchBar"}/>
                         </Paper>
+
+
                     ) : null}
                 </Box>
                 <Box className={classes.distanceProviderBox}/>
