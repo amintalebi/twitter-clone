@@ -1,21 +1,23 @@
 import React, { Component } from "react";
-import { HomeRounded, SearchRounded, NotificationsRounded, MailOutlineRounded, BookmarkBorderRounded,
-    FormatListBulletedRounded, AccountCircleRounded, MoreHorizRounded } from '@material-ui/icons';
+import {
+    HomeRounded, SearchRounded, NotificationsRounded, MailOutlineRounded, BookmarkBorderRounded,
+    FormatListBulletedRounded, AccountCircleRounded, MoreHorizRounded, PageviewRounded, ImageSearchRounded
+} from '@material-ui/icons';
 import {makeStyles, useMediaQuery, useTheme, styled, Badge, withStyles} from "@material-ui/core";
 import { Fab, Box } from "@material-ui/core";
 import EditProfileModal from "./EditProfileModal";
 import NotificationModal from "./NotificationModal";
+import {Link} from "react-router-dom";
+import MoreOptionsModal from "./MoreOptionsModal";
+import SeachModal from "./SeachModal";
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        // position: "fixed",
-        // overflowY: "auto",
-        // height: "100%",
-        // width: "100%",
+
     },
     scrollableBox: {
-        // direction: "rtl",
+
     },
     items: { //todo more style for focus
         '&.MuiFab-root': { //for rise order
@@ -72,20 +74,24 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const StyledFab = styled(({Icon, text, classes, matches, theme, onClick,  ...other}) => matches ? (
-    <Box {...other}>
+const StyledFab = styled(({Icon, text, classes, matches, theme, onClick, href,  ...other}) => matches ? (
+    <Link {...other} to={href}>
         <Fab onClick={onClick} boxShadow={0} size="medium" variant="extended" color="primary" className={classes.items}>
             {Icon}
             <p className={classes.extendedText}>{text}</p>
         </Fab>
-    </Box>
+    </Link>
 ) : (
-    <Box {...other}>
+    <Link {...other} to={href}>
         <Fab onClick={onClick} size="medium" color="primary" className={classes.items}>
             {Icon}
         </Fab>
-    </Box>
-))``;
+    </Link>
+))({
+    "&:focus": {
+        outline: "none",
+    }
+});
 
 const StyledBadge = withStyles(theme => ({
     badge: {
@@ -172,7 +178,23 @@ function RightNavBar() {
     const matches = useMediaQuery(theme.breakpoints.up('xl'));
     const styleFabAttributes = { classes: classes, matches: matches, theme: theme };
     const [notificationModal, setNotificationModal] = React.useState(false);
+    const [moreOptionsModal, setMoreOptionsModal] = React.useState(false);
+    const [searchModal, setSearchModal] = React.useState(false);
     const youHaveNotification = true;//todo
+
+    const HomeIconButton = styled(() =>
+        <Link display="block" to="/home/following">
+            <Fab size="medium" color="secondary" className={classes.header}>
+                <HomeRounded fontSize={"large"}/>
+            </Fab>
+        </Link>
+    )({
+        "&:focus": {
+            outline: "none",
+            backgroundColor: "blue"
+        }
+    });
+
     return (
         <Box
             className={classes.root}
@@ -180,13 +202,18 @@ function RightNavBar() {
             justifyContent="flex-start"
             alignItems={matches ? "flex-start" : "center"}
         >
-            <Box display="block">
-                <Fab size="medium" color="secondary" className={classes.header}>
-                    <HomeRounded fontSize={"large"}/>
-                </Fab>
-            </Box>
+            <HomeIconButton/>
             {/*<StyledFab Icon={<HomeRounded fontSize={"large"}/>} text="خانه"  {...styleFabAttributes} />*/}
-            <StyledFab Icon={<SearchRounded fontSize={"large"}/>} text="جست و جو"  {...styleFabAttributes} />
+            <StyledFab
+                Icon={<SearchRounded fontSize={"large"}/>}
+                text="جست و جو"
+                {...styleFabAttributes}
+                onClick={() => setSearchModal(true)}
+            />
+            <SeachModal open={searchModal} onClose={() => setSearchModal(false)}/>
+
+            <StyledFab href={"/search"} Icon={<ImageSearchRounded fontSize={"large"}/>} text="کاوش"  {...styleFabAttributes} />
+
             <StyledFabWithBadge
                 Icon={<NotificationsRounded fontSize={"large"}/>}
                 text="اعلانات"
@@ -194,13 +221,19 @@ function RightNavBar() {
                 onClick={() => setNotificationModal(true)}
                 withBadge
             />
+            <NotificationModal open={notificationModal} onClose={(e) => setNotificationModal(false)}/>
 
             <StyledFab Icon={<MailOutlineRounded fontSize={"large"}/>} text="پیام‌ها"  {...styleFabAttributes} />
             <StyledFab Icon={<BookmarkBorderRounded fontSize={"large"}/>} text="نشانک‌ها"  {...styleFabAttributes} />
             <StyledFab Icon={<FormatListBulletedRounded fontSize={"large"}/>} text="لیست‌ها"  {...styleFabAttributes} />
-            <StyledFab Icon={<AccountCircleRounded fontSize={"large"}/>} text="مشخصات"  {...styleFabAttributes} />
-            <StyledFab Icon={<MoreHorizRounded fontSize={"large"}/>} text="بیشتر"  {...styleFabAttributes} />
-            <NotificationModal open={notificationModal} onClose={(e) => setNotificationModal(false)}/>
+
+            <StyledFab href={"/profile"} Icon={<AccountCircleRounded fontSize={"large"}/>} text="مشخصات"  {...styleFabAttributes} />
+            <StyledFab
+                Icon={<MoreHorizRounded fontSize={"large"}/>}
+                text="بیشتر"  {...styleFabAttributes}
+                onClick={() => setMoreOptionsModal(true)}
+            />
+            <MoreOptionsModal open={moreOptionsModal} onClose={() => setMoreOptionsModal(false)}/>
         </Box>
     );
 }

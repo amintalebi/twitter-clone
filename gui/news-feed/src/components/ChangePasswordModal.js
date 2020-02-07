@@ -54,7 +54,7 @@ const styles = theme => ({
         },
     },
     formWrapper: {
-        overflowY: "scroll",
+        overflowY: "auto",
     },
     form: {
         margin: "0 auto",
@@ -64,50 +64,8 @@ const styles = theme => ({
         justifyContent: "flex-start",
         alignItems: "flex-end",
     },
-    backgroundImageWrapper: {
-        top:0,
-        position: "relative",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: 220,
-        backgroundColor: "green",
-    },
-    backgroundImage: {
-        height: "100%",
-        backgroundColor: "red",
-        width: "100%",
-        position: "absolute",
-    },
-    backgroundImageInput: {
-        display: "none",
-    },
-    avatarImageWrapper: {
-        position: "relative",
-        bottom: "calc(2vw + 30px)",
-        left: "1.5vw",
-        width: "calc(3vw + 60px)",
-        height: "calc(3vw + 60px)",
-        borderRadius: "100%",
-        border: "white solid .5vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "yellow",
-    },
-    avatarImage: {
-        backgroundColor: "blue",
-        width: "100%",
-        height: "100%",
-        borderRadius: "100%",
-        position: "absolute",
-    },
-    avatarImageInput: {
-        display: "none",
-    },
     textInput: {
-        margin: "10px",
+        margin: theme.spacing(1),
         width: "100%",
     },
 });
@@ -120,24 +78,6 @@ class ChangePasswordModal extends Component {
         showPasswordRepeat: false,
     };
 
-    loadBackgroundImage = (e) => {
-        let reader = new FileReader();
-        reader.onload = () => {
-            this.setState({
-                backgroundImage: reader.result,
-            });
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    };
-    loadAvatarImage = (e) => {
-        let reader = new FileReader();
-        reader.onload = () => {
-            this.setState({
-                avatarImage: reader.result,
-            });
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    };
     handleChange = (prop) => (e) => {
         this.setState({
             [prop]: e.target.value,
@@ -148,10 +88,10 @@ class ChangePasswordModal extends Component {
             [prop]: !this.state[prop],
         });
     };
-
     handleMouseDownField = (e) => {
         e.preventDefault();
     };
+
     render() {
         const { classes, open, onClose, account } = this.props;
         const { password, passwordRepeat, showPassword, showPasswordRepeat } = this.state;
@@ -178,16 +118,9 @@ class ChangePasswordModal extends Component {
                         </Button>
                     </Box>
                 </DialogTitle>
-                <DialogContent>
+                <DialogContent className={classes.formWrapper}>
                     <Box className={classes.form}>
-                        <TextField
-                            value={password}
-                            label="رمز عبور"
-                            onChange={this.handleNameChange}
-                            classes={{root: classes.textInput}}
-                            variant="filled"
-                        />
-                        <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
+                        <FormControl className={classes.textInput} variant="filled" dir="ltr">
                             <InputLabel htmlFor="filled-password">رمز عبور</InputLabel>
                             <FilledInput
                                 id="filled-password"
@@ -208,14 +141,27 @@ class ChangePasswordModal extends Component {
                                 }
                             />
                         </FormControl>
-                        <TextField
-                            label="تکرار رمز عبور"
-                            value={passwordRepeat}
-                            onChange={this.handleBioChange}
-                            classes={{root: classes.textInput}}
-                            variant="filled"
-
-                        />
+                        <FormControl className={classes.textInput} variant="filled" dir="ltr">
+                            <InputLabel htmlFor="filled-password-repeat">تکرار رمز عبور</InputLabel>
+                            <FilledInput
+                                id="filled-password-repeat"
+                                type={showPasswordRepeat ? 'text' : 'password'}
+                                value={passwordRepeat}
+                                onChange={this.handleChange('passwordRepeat')}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={this.handleClickShowField("showPasswordRepeat")}
+                                            onMouseDown={this.handleMouseDownField}
+                                            edge="end"
+                                        >
+                                            {showPasswordRepeat ? <VisibilityRounded /> : <VisibilityOffRounded />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
                     </Box>
                 </DialogContent>
             </Dialog>

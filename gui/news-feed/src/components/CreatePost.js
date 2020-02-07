@@ -26,6 +26,7 @@ const styles = theme => ({
         borderBottomWidth: 1,
         borderColor: theme.palette.tertiary.main,
         borderRadius: 0,
+        width: "100%",
     },
     avatar: {
         marginLeft: theme.spacing(2),
@@ -74,10 +75,8 @@ const styles = theme => ({
 
 class CreatePost extends Component {
     state = {
-        content: "",
-        image: "",
-        bold: false,
-        italic: false,
+        content: this.props.default ? this.props.default.content : "",
+        image: this.props.default ? this.props.default.media.src : "",
     };
 
     textInputOnChangeHandler = (e) => {
@@ -88,6 +87,7 @@ class CreatePost extends Component {
 
     loadImageButton = (e) => {
         let reader = new FileReader();
+        console.log(this.state)
         reader.onload = () => {
             this.setState({
                 image: reader.result,
@@ -103,8 +103,9 @@ class CreatePost extends Component {
     };
 
     render() {
-        const { classes, myAccount } = this.props;
-        const { content, image, bold, italic } = this.state;
+        const { classes, myAccount, channelID } = this.props;
+        const { content, image } = this.state;
+
         return (
             <Card variant="outlined" classes={{root: classes.root}}>
                 <CardHeader
@@ -143,11 +144,11 @@ class CreatePost extends Component {
                             onChange={this.loadImageButton}
                             accept="image/*"
                             className={classes.imageInput}
-                            id="outlined-button-file"
+                            id={"outlined-button-file" + this._reactInternalFiber._debugID }
                             multiple
                             type="file"
                         />
-                        <label htmlFor="outlined-button-file">
+                        <label htmlFor={"outlined-button-file" + this._reactInternalFiber._debugID}>
                             <IconButton
                                 color="primary"
                                 component="span"

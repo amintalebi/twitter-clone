@@ -96,7 +96,7 @@ class SearchPageSearchField extends Component {
                         </IconButton>
                         <InputBase
                             className={classes.input}
-                            placeholder="جست‌و‌جو در پست ها"
+                            placeholder="کاوش در پست ها"
                             onInput={this.searchHandler}
                             value={state.search}
                         />

@@ -5,7 +5,26 @@ import {Box, withStyles} from "@material-ui/core";
 const styles = theme => ({
     root: {
         position: "fixed",
-        overflow: "scroll",
+        overflowY: "auto",
+        maxHeight: "100vh",
+        '@media only screen and (max-width: 600px)': {
+            width: 68 - 20,
+        },
+        '@media only screen and (min-width: 600px) and (max-width: 988px)': {
+            width: 88 - 20,
+        },
+        '@media only screen and (min-width: 988px) and (max-width: 1008px)': {
+            width: 68 - 20,
+        },
+        '@media only screen and (min-width: 1008px) and (max-width: 1078px)': {
+            width: 88 - 20,
+        },
+        '@media only screen and (min-width: 1078px) and (max-width: 1265px)': {
+            width: 88 - 20,
+        },
+        '@media only screen and (min-width: 1265px)': {
+            width: 275 - 20,
+        },
     }
 });
 

@@ -8,6 +8,10 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 
 const styles = theme => ({
+    accountSkeletonRoot: {
+        borderRadius: 0,
+        borderBottom: `1px solid ${theme.palette.tertiary.main}`,
+    },
     skeleton: {
         backgroundColor: theme.palette.primary.light,
     },
@@ -38,11 +42,11 @@ class Accounts extends Component {
                 next={this.fetchMoreData}
                 hasMore={true}
                 loader={
-                    <Card>
+                    <Card className={classes.accountRoot}>
                         <CardHeader
-                            avatar={<Skeleton className={classes.skeletonAvatar} animation="wave" variant="circle" width={40} height={40} />}
-                            title={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={200} />}
-                            subheader={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={100}/>}
+                            avatar={<Skeleton className={classes.skeletonAvatar} animation="wave" variant="circle" width={36} height={36} />}
+                            title={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={"80%"} />}
+                            subheader={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={"60%"}/>}
                         />
                     </Card>
                 }
