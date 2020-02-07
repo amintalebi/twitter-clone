@@ -74,10 +74,8 @@ const styles = theme => ({
 
 class CreatePost extends Component {
     state = {
-        content: "",
-        image: "",
-        bold: false,
-        italic: false,
+        content: this.props.default ? this.props.default.content : "",
+        image: this.props.default ? this.props.default.media.src : "",
     };
 
     textInputOnChangeHandler = (e) => {
@@ -103,7 +101,7 @@ class CreatePost extends Component {
     };
 
     render() {
-        const { classes, myAccount } = this.props;
+        const { classes, myAccount, channelID } = this.props;
         const { content, image, bold, italic } = this.state;
         return (
             <Card variant="outlined" classes={{root: classes.root}}>

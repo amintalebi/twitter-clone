@@ -11064,6 +11064,11 @@ svgpath@^2.1.2:
   resolved "https://registry.yarnpkg.com/svgpath/-/svgpath-2.2.3.tgz#749c673899f92c3a4fc2d5415cf85dec349d9512"
   integrity sha512-xA0glXYpJ9SYT4JeMp3c0psbqdZsG1c0ywGvdJUPY2FKEgwJV7NgkeYuuQiOxMp+XsK9nCqjm3KDw0LkM1YLXw==
 
+sweetalert2@^9.7.1:
+  version "9.7.1"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.7.1.tgz#10a6aeb8516c6d55f6fb931cf6b595d007a65e54"
+  integrity sha512-ytBEyqRmZQsEFuPsYcuEXpruj9AgT32ELEBWGnioflsqbxHMMM8/Ghm1+hi4hsZ1PU7cp9TFFWe06WveGfwWKw==
+
 symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"

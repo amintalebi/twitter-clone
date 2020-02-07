@@ -4,8 +4,13 @@ import  { withStyles } from "@material-ui/core";
 import Post from "./Post";
 import {connect} from "react-redux";
 import Button from "@material-ui/core/Button";
+import {withRouter} from "react-router";
 
 const styles = theme => ({
+    accountRoot: {
+        borderRadius: 0,
+        borderBottom: `1px solid ${theme.palette.tertiary.main}`,
+    },
     actionButtonOn: {
         borderRadius: 100,
         backgroundColor: theme.palette.primary.main,
@@ -24,17 +29,22 @@ const styles = theme => ({
         boxSizing: "border-box",
         height: 35,
     },
+    avatar: {
+        marginLeft: theme.spacing(1),
+    },
 });
 
 class Account extends Component {
 
     render() {
-        const { classes, followed, followedHandler } = this.props;
+        // "followers -> follow ban" "normal(search, following)" "channelMembers -> delete and ban" "channelAdmins -> delete access"
+        const { classes, followed, followedHandler} = this.props;
         return (
-            <Card>
+            <Card className={classes.accountRoot}>
                 <CardHeader
                     avatar={
                         <Avatar
+                            onClick={() => this.props.history.push("/profile/4")}
                             classes={{root: classes.avatar}}
                             aria-label="recipe"
                             alt={ "" }
@@ -66,4 +76,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default withStyles(styles)(connect(mapStateToProps, null)(Account));
+export default withStyles(styles)(connect(mapStateToProps, null)(withRouter(Account)));

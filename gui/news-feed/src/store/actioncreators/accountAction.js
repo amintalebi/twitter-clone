@@ -25,7 +25,8 @@ export const signUp = (name, userName, email, password) => {
             }
         };
         console.log(config)
-        API({ method: 'POST', url: 'accounts/signup/', headers: config.headers, data: config.body })
+        API.post('accounts/signup/', config.body, {headers: config.headers})
+        // API({ method: 'POST', url: 'accounts/signup/', headers: config.headers, data: config.body })
             .then(function (response) {
                 dispatch({ type: 'RESPONSE', response: {result: true, error: null} });
             })

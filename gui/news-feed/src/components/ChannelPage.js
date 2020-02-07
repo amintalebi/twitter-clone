@@ -27,6 +27,11 @@ import {connect} from "react-redux";
 import rootReducer from "../store/reducers/rootReducer";
 import ProfileTabs from "./ProfileTabs";
 import ToggleIcon from "material-ui-toggle-icon";
+import CreatePost from "./CreatePost";
+import ChannelMoreOptionsModal from "./ChannelMoreOptionsModal";
+import AccountsModal from "./AccountsModal";
+import Accounts from "./Accounts";
+import ChannelTabs from "./ChannelTabs";
 
 const styles = theme => ({
     root: {
@@ -185,8 +190,8 @@ const styles = theme => ({
 
 class ProfilePage extends Component {
     state = {
-        mine: false,
-        admin: false,
+        mine: true,
+        admin: true,
         followed: true,
         notification: false,
         editModalOpen: false,
@@ -213,6 +218,10 @@ class ProfilePage extends Component {
         })
     };
 
+    back = () => {
+        this.props.history.goBack()
+    };
+
     render() {
         const { classes } = this.props;
         const  { admin, mine, followed, notification, editModalOpen, rules } = this.state;
@@ -220,7 +229,7 @@ class ProfilePage extends Component {
         return (
             <Box className={classes.root}>
                 <Box  display="flex" justifyContent="flex-start" alignItems="center"  className={classes.backBar}>
-                    <IconButton className={classes.closeIconButton} onClick={this.searchCloseIconClickHandler}>
+                    <IconButton className={classes.closeIconButton} onClick={this.back}>
                         <KeyboardBackspaceRounded fontSize="medium" />
                     </IconButton>
                     <Box>
@@ -266,12 +275,12 @@ class ProfilePage extends Component {
                                 }
                                 <Button
                                     color="primary"
-                                    classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
+                                    classes={{root: followed && !mine && !admin ? classes.actionButtonOn : classes.actionButtonOff}}
                                     onClick={
                                         mine ? (
                                             this.handleEditProfileButtonClick
                                         ) : (
-                                            this.handleFollowButtonClick
+                                            !admin ? this.handleFollowButtonClick : null
                                         )
                                     }
                                 >
@@ -326,9 +335,11 @@ class ProfilePage extends Component {
                             <p>مدیران کانال</p>
                         </Typography>
                     </CardActions>
+                    <ChannelMoreOptionsModal open={editModalOpen} onClose={this.handleCloseEditProfileModal} />
+                    <AccountsModal  />
+                    <AccountsModal />
                 </Card>
-                <ProfileTabs/>
-                <Posts />
+                <ChannelTabs mine={true} admin={true} channelID={"213"} />
             </Box>
         );
     }

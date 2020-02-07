@@ -9,10 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const styles = theme => ({
     root: {
-      width: "100%",
-    },
-    notificationRoot: {
-        // width: "100%",
+      // padding: 0,
     },
     skeleton: {
         backgroundColor: theme.palette.primary.light,
@@ -20,6 +17,10 @@ const styles = theme => ({
     skeletonAvatar: {
         backgroundColor: theme.palette.primary.light,
         marginLeft: theme.spacing(1),
+    },
+    notificationRoot: {
+        borderRadius: 0,
+        borderBottom: `1px solid ${theme.palette.tertiary.main}`,
     },
     avatar: {
         marginRight: theme.spacing(1),
@@ -40,10 +41,12 @@ class Notifications extends Component {
                 next={this.fetchMoreData}
                 hasMore={true}
                 loader={
-                    <Card>
+                    <Card className={classes.notificationRoot}>
                         <CardHeader
-                            avatar={<Skeleton className={classes.skeletonAvatar} animation="wave" variant="circle" width={40} height={40} />}
-                            title={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={200} />}/>
+                            avatar={<Skeleton className={classes.skeletonAvatar} animation="wave" variant="circle" width={36} height={36} />}
+                            title={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={"60%"} />}
+                            subheader={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={"40%"} />}
+                        />
                     </Card>
                 }
                 endMessage={
