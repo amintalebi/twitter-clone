@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'channels',
-    'events'
+    'events',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,8 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'http://127.0.0.1:8000')
 CORS_ALLOW_CREDENTIALS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ROOT_URLCONF = 'newsfeed.urls'
 
@@ -128,7 +131,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
@@ -147,3 +149,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
