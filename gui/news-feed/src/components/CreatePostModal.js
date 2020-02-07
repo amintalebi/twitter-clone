@@ -20,7 +20,7 @@ import CreatePost from "./CreatePost";
 const styles = theme => ({
     paper: {
         borderRadius: 13,
-        width: "auto",
+        width: 600,
     },
     title: {
         borderStyle: "solid",
@@ -55,7 +55,7 @@ const styles = theme => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        alignItems: "flex-end",
+        alignItems: "center",
     },
 
 });

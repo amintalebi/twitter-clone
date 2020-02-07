@@ -64,25 +64,27 @@ function ProfileTabs() {
         setValue(newValue);
     };
     return (
-        <Tabs
-            value={value}
-            onChange={handleChange}
-            variant="fullWidth"
-            indicatorColor="secondary"
-            textColor="secondary"
-            classes={{root: classes.root}}
-        >
-            <StyledTab to="/profile/2" icon={<ModeCommentRounded fontSize={"large"}/>} label="پست‌ها" {...styledTabAttributes} />
-            <StyledTab to="/profile/2/replies" icon={<ForumRounded fontSize={"large"}/>} label="جواب‌ها" {...styledTabAttributes} />
-            <StyledTab to="profile/2/posts/own-channels" icon={<GroupAddRounded fontSize={"large"}/>} label="کانال‌ها شخصی" {...styledTabAttributes}  />
-            <StyledTab to="profile/2/posts/channels" icon={<GroupRounded fontSize={"large"}/>} label="کانال‌های دنبال شده" {...styledTabAttributes} />
+        <Box>
+            <Tabs
+                value={value}
+                onChange={handleChange}
+                variant="fullWidth"
+                indicatorColor="secondary"
+                textColor="secondary"
+                classes={{root: classes.root}}
+            >
+                <StyledTab to="/profile/2" icon={<ModeCommentRounded fontSize={"large"}/>} label="پست‌ها" {...styledTabAttributes} />
+                <StyledTab to="/profile/2/replies" icon={<ForumRounded fontSize={"large"}/>} label="جواب‌ها" {...styledTabAttributes} />
+                <StyledTab to="/profile/2/posts/own-channels" icon={<GroupAddRounded fontSize={"large"}/>} label="کانال‌ها شخصی" {...styledTabAttributes}  />
+                <StyledTab to="/profile/2/posts/channels" icon={<GroupRounded fontSize={"large"}/>} label="کانال‌های دنبال شده" {...styledTabAttributes} />
+            </Tabs>
             <Switch>
                 <Route path='/profile/2' component={ Posts } />
                 <Route path='/profile/2/replies' component={ Posts } />
                 <Route path='profile/2/posts/own-channels' component={ Accounts } />
                 <Route path='profile/2/posts/channels' component={ Accounts } />
             </Switch>
-        </Tabs>
+        </Box>
     );
 }
 

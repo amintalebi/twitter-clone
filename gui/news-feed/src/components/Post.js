@@ -85,6 +85,10 @@ const styles = theme => ({
             backgroundColor: theme.palette.primary.light,
         }
     },
+    speedDialWrapper: {
+        height: 56,
+        overflow: "visible",
+    },
     speedDialIcon: {
         backgroundColor: "transparent",
         boxShadow: "none",
@@ -104,6 +108,12 @@ class Post extends Component {
         downVoted: false,
         moreOptionsForOwner: false,
         editModalOpen: false,
+        commentModalOpen: false,
+    };
+    setCommentModalOpen = (value) => (e) => {
+        this.setState({
+            commentModalOpen: value,
+        })
     };
     setEditModalOpen = (value) => (e) => {
         this.setState({
@@ -119,11 +129,14 @@ class Post extends Component {
         if (!this.state.upVoted && !this.state.downVoted) {
             this.setState({
                 upVotes: this.state.upVotes + 1,
+                upVoted: true,
             })
         } else if (!this.state.upVoted) {
             this.setState({
                 upVotes: this.state.upVotes + 1,
                 downVotes: this.state.downVotes - 1,
+                upVoted: true,
+                downVoted: false,
             })
         }
     };
@@ -132,11 +145,14 @@ class Post extends Component {
         if (!this.state.upVoted && !this.state.downVoted) {
             this.setState({
                 upVotes: this.state.upVotes + 1,
+                downVoted: true,
             })
         } else if (!this.state.downVoted) {
             this.setState({
                 upVotes: this.state.upVotes - 1,
                 downVotes: this.state.downVotes + 1,
+                upVoted: false,
+                downVoted: true,
             })
         }
     };
@@ -176,25 +192,27 @@ class Post extends Component {
                         />
                     }
                     action={
-                        <SpeedDial
-                            classes={{fab: classes.speedDialIcon}}
-                            ariaLabel="SpeedDial openIcon example"
-                            hidden={mine}
-                            icon={<MoreVertRounded />}
-                            onClose={this.setMoreOptionsForOwner(false)}
-                            onOpen={this.setMoreOptionsForOwner(true)}
-                            open={this.state.moreOptionsForOwner}
-                            direction="down"
-                        >
-                            {actions.map(action => (
-                                <SpeedDialAction
-                                    key={action.name}
-                                    icon={action.icon}
-                                    tooltipTitle={action.name}
-                                    onClick={this.setMoreOptionsForOwner(false)}
-                                />
-                            ))}
-                        </SpeedDial>
+                        <Box className={classes.speedDialWrapper}>
+                            <SpeedDial
+                                classes={{fab: classes.speedDialIcon}}
+                                ariaLabel="SpeedDial openIcon example"
+                                hidden={mine}
+                                icon={<MoreVertRounded />}
+                                onClose={this.setMoreOptionsForOwner(false)}
+                                onOpen={this.setMoreOptionsForOwner(true)}
+                                open={this.state.moreOptionsForOwner}
+                                direction="down"
+                            >
+                                {actions.map(action => (
+                                    <SpeedDialAction
+                                        key={action.name}
+                                        icon={action.icon}
+                                        tooltipTitle={action.name}
+                                        onClick={this.setMoreOptionsForOwner(false)}
+                                    />
+                                ))}
+                            </SpeedDial>
+                        </Box>
                     }
                     title={
                         <Typography
@@ -236,18 +254,18 @@ class Post extends Component {
                 />
                 <CardActions className={classes.cardActions}>
                     <Box className={classes.boxButtonWithNumberWrapper} onClick={this.upVote}>
-                        <Typography>{2}</Typography>
+                        <Typography>{this.state.upVotes}</Typography>
                         <IconButton>
                             <ThumbUpRounded fontSize="small"/>
                         </IconButton>
                     </Box>
                     <Box className={classes.boxButtonWithNumberWrapper} onClick={this.downVote}>
-                        <Typography>{12}</Typography>
+                        <Typography>{this.state.downVotes}</Typography>
                         <IconButton>
                             <ThumbDownRounded fontSize="small"/>
                         </IconButton>
                     </Box>
-                    <Box className={classes.boxButtonWithNumberWrapper}>
+                    <Box className={classes.boxButtonWithNumberWrapper} onClick={this.setCommentModalOpen(true)}>
                         <Typography>{33}</Typography>
                         <IconButton>
                             <ModeCommentOutlined fontSize="small"/>
@@ -257,6 +275,7 @@ class Post extends Component {
                         <LinkRounded fontSize="small"/>
                     </IconButton>
                 </CardActions>
+                <CreatePostModal open={this.state.commentModalOpen} onClose={this.setCommentModalOpen(false)} />
                 <CreatePostModal default={post} open={this.state.editModalOpen} onClose={this.setEditModalOpen(false)} />
             </Card>
         );
