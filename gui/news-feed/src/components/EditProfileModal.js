@@ -68,11 +68,10 @@ const styles = theme => ({
         justifyContent: "center",
         alignItems: "center",
         height: 220,
-        backgroundColor: "green",
     },
     backgroundImage: {
         height: "100%",
-        backgroundColor: "red",
+        backgroundColor: theme.palette.primary.main,
         width: "100%",
         position: "absolute",
     },
@@ -90,14 +89,14 @@ const styles = theme => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "yellow",
     },
     avatarImage: {
-        backgroundColor: "blue",
+        backgroundColor: theme.palette.primary.main,
         width: "100%",
         height: "100%",
         borderRadius: "100%",
         position: "absolute",
+        border: "none"
     },
     avatarImageInput: {
         display: "none",
@@ -117,7 +116,6 @@ class EditProfileModal extends Component {
     };
 
     loadBackgroundImage = (e) => {
-        console.log(this.state)
         let reader = new FileReader();
         reader.onload = () => {
             this.setState({
@@ -127,7 +125,6 @@ class EditProfileModal extends Component {
         reader.readAsDataURL(e.target.files[0]);
     };
     loadAvatarImage = (e) => {
-        console.log(this.state)
         let reader = new FileReader();
         reader.onload = () => {
             this.setState({
@@ -137,13 +134,11 @@ class EditProfileModal extends Component {
         reader.readAsDataURL(e.target.files[0]);
     };
     handleNameChange = (e) => {
-        console.log(this.state)
         this.setState({
             name: e.target.value,
         });
     };
     handleBioChange = (e) => {
-        console.log(this.state)
         this.setState({
             bio: e.target.value,
         });

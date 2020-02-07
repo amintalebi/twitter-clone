@@ -232,13 +232,16 @@ class ProfilePage extends Component {
             notification: !this.state.notification,
         })
     };
+    back = () => {
+        this.props.history.goBack()
+    };
     render() {
         const { classes } = this.props;
         const  { mine, followed, notification, editModalOpen } = this.state;
         return (
             <Box className={classes.root}>
                 <Box  display="flex" justifyContent="flex-start" alignItems="center"  className={classes.backBar}>
-                    <IconButton className={classes.closeIconButton} onClick={this.searchCloseIconClickHandler}>
+                    <IconButton className={classes.closeIconButton} onClick={this.back}>
                         <KeyboardBackspaceRounded fontSize="medium" />
                     </IconButton>
                     <Box>
@@ -331,7 +334,6 @@ class ProfilePage extends Component {
                     </CardActions>
                 </Card>
                 <ProfileTabs/>
-                <Posts />
                 <EditProfileModal open={editModalOpen} onClose={ this.handleCloseEditProfileModal }/>
             </Box>
         );

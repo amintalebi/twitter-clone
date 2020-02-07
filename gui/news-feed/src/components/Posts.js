@@ -44,16 +44,16 @@ class Posts extends Component {
                     <Card>
                         <CardHeader
                             avatar={<Skeleton className={classes.skeletonAvatar} animation="wave" variant="circle" width={40} height={40} />}
-                            title={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={200} />}
-                            subheader={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={100}/>}
+                            title={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={"60%"} />}
+                            subheader={<Skeleton className={classes.skeleton} animation="wave" variant="text" width={"40%"}/>}
                         />
                         <CardContent>
-                            <Skeleton className={classes.skeleton} animation="wave" variant="text" width={400} />
-                            <Skeleton className={classes.skeleton} animation="wave" variant="text" width={500} />
-                            <Skeleton className={classes.skeleton} animation="wave" variant="text" width={300} />
+                            <Skeleton className={classes.skeleton} animation="wave" variant="text" width={"80%"} />
+                            <Skeleton className={classes.skeleton} animation="wave" variant="text" width={"90%"} />
+                            <Skeleton className={classes.skeleton} animation="wave" variant="text" width={"70%"} />
                         </CardContent>
                         <CardMedia>
-                            <Skeleton className={classes.skeleton} animation="wave" variant="rect" width={600} height={220} />
+                            <Skeleton className={classes.skeleton} animation="wave" variant="rect" width={"100%"} height={220} />
                         </CardMedia>
                         <CardActions className={classes.skeletonCardActionWrapper}>
                             <Skeleton className={classes.skeleton} animation="wave" variant="circle" width={36} height={36} />

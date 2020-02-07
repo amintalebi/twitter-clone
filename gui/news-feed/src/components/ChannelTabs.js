@@ -17,6 +17,7 @@ import PostPage from "./PostPage";
 import Main from "./Main";
 import Posts from "./Posts";
 import Accounts from "./Accounts";
+import CreatePost from "./CreatePost";
 
 const StyledTab = styled(({icon, label, matches, to, ...other}) =>
     matches ? (
@@ -53,7 +54,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function ProfileTabs() {
+function ChannelTabs(props) {
+    const {channelID, mine, admin} = props;
     const theme = useTheme();
     const classes = useStyles(theme);
     const [value, setValue] = React.useState(0);
@@ -64,6 +66,7 @@ function ProfileTabs() {
         setValue(newValue);
     };
     return (
+
         <Box>
             <Tabs
                 value={value}
@@ -73,19 +76,20 @@ function ProfileTabs() {
                 textColor="secondary"
                 classes={{root: classes.root}}
             >
-                <StyledTab to="/profile/2" icon={<ModeCommentRounded fontSize={"large"}/>} label="پست‌ها" {...styledTabAttributes} />
-                <StyledTab to="/profile/2/replies" icon={<ForumRounded fontSize={"large"}/>} label="جواب‌ها" {...styledTabAttributes} />
-                <StyledTab to="/profile/2/posts/own-channels" icon={<GroupAddRounded fontSize={"large"}/>} label="کانال‌ها شخصی" {...styledTabAttributes}  />
-                <StyledTab to="/profile/2/posts/channels" icon={<GroupRounded fontSize={"large"}/>} label="کانال‌های دنبال شده" {...styledTabAttributes} />
+                <StyledTab to="/channel/2" icon={<ModeCommentRounded fontSize={"large"}/>} label="پست‌ها" {...styledTabAttributes} />
+                <StyledTab to="/channel/2/replies" icon={<ForumRounded fontSize={"large"}/>} label="جواب‌ها" {...styledTabAttributes} />
             </Tabs>
+            {
+                mine || admin ? (
+                    <CreatePost channelID={channelID} />
+                ) : null
+            }
             <Switch>
-                <Route path='/profile/2' component={ Posts } />
-                <Route path='/profile/2/replies' component={ Posts } />
-                <Route path='profile/2/posts/own-channels' component={ Accounts } />
-                <Route path='profile/2/posts/channels' component={ Accounts } />
+                <Route path='/channel/2' component={ Posts } />
+                <Route path='/channel/2/replies' component={ Posts } />
             </Switch>
         </Box>
     );
 }
 
-export default ProfileTabs;
+export default ChannelTabs;
