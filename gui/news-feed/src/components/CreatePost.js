@@ -16,8 +16,18 @@ import {
     Divider,
 } from "@material-ui/core";
 import  { withStyles } from "@material-ui/core";
-import {AddPhotoAlternateRounded, FormatBoldRounded, FormatItalicRounded, MenuRounded} from "@material-ui/icons";
+import {
+    AddPhotoAlternateRounded,
+    FormatBoldRounded,
+    FormatItalicRounded,
+    MenuRounded,
+    VideoCallRounded
+} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
+import ReactPlayer from "react-player";
+import Swal from "sweetalert2";
+import {Editor, EditorState, RichUtils} from 'draft-js';
+
 
 const styles = theme => ({
     root: {
@@ -27,6 +37,7 @@ const styles = theme => ({
         borderColor: theme.palette.tertiary.main,
         borderRadius: 0,
         width: "100%",
+
     },
     avatar: {
         marginLeft: theme.spacing(2),
@@ -71,12 +82,17 @@ const styles = theme => ({
         height: 35,
         marginLeft: theme.spacing(1),
     },
+    editor: {
+        border: '1px solid gray',
+        minHeight: '6em'
+    },
 });
 
 class CreatePost extends Component {
     state = {
-        content: this.props.default ? this.props.default.content : "",
-        image: this.props.default ? this.props.default.media.src : "",
+        content: this.props.default && this.props.default.content ? this.props.default.content : "",
+        image: this.props.default && this.props.default.media ? this.props.default.media.src : "",
+        video: this.props.default && this.props.default.media ? this.props.default.media.src : "",
     };
 
     textInputOnChangeHandler = (e) => {
@@ -87,9 +103,9 @@ class CreatePost extends Component {
 
     loadImageButton = (e) => {
         let reader = new FileReader();
-        console.log(this.state)
         reader.onload = () => {
             this.setState({
+                video: "",
                 image: reader.result,
             });
         };
@@ -99,12 +115,28 @@ class CreatePost extends Component {
     removeImage = (e) => {
         this.setState({
             image: "",
+            video: "",
         });
     };
 
+    readVideoUrl = async (e) => {
+        const { value: url } = await Swal.fire({
+            input: 'url',
+            inputPlaceholder: 'Enter the URL'
+        });
+        if (url) {
+            Swal.fire(`Entered URL: ${url}`);
+            this.setState({
+                video: url,
+                image: "",
+            })
+        }
+    };
+
+
     render() {
         const { classes, myAccount, channelID } = this.props;
-        const { content, image } = this.state;
+        const { content, image, video } = this.state;
 
         return (
             <Card variant="outlined" classes={{root: classes.root}}>
@@ -128,11 +160,26 @@ class CreatePost extends Component {
                         value={content}
                     />
                 </CardContent>
-                <CardMedia
-                    component= {image ?  "img" : "div"}
-                    classes={{root: classes.mediaRoot, img: classes.img}}
-                    image={ image }
-                />
+                {
+                    image ? (
+                        <CardMedia
+                            component= "img"
+                            classes={{root: classes.mediaRoot, img: classes.img}}
+                            image={ image }
+                        />
+                    ) : null
+                }
+                {
+                    !image && video ? (
+                        <CardMedia>
+                            <ReactPlayer
+                                url={video}
+                                width='100%'
+                                height='220px'
+                            />
+                        </CardMedia>
+                    ) : null
+                }
                 <CardActions className={classes.cardAction}>
                     <Box>
                         <Button component="span" color="primary" className={classes.saveButton}>
@@ -157,15 +204,22 @@ class CreatePost extends Component {
                                 <AddPhotoAlternateRounded fontSize="medium"/>
                             </IconButton>
                         </label>
+                        <IconButton
+                            onClick={this.readVideoUrl}
+                            color="primary"
+                            component="span"
+                            className={classes.iconButton}
+                        >
+                            <VideoCallRounded fontSize="medium"/>
+                        </IconButton>
                         {
-                            image ? (
+                            image || video ? (
                                 <Button color="primary" className={classes.saveButton} onClick={this.removeImage}>
-                                    حذف عکس
+                                    حذف مدیا
                                 </Button>
                             ) : null
                         }
                     </Box>
-
                 </CardActions>
             </Card>
         );
