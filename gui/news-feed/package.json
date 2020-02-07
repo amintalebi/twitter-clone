@@ -13,6 +13,7 @@
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
     "font-loader": "^0.1.2",
+    "http-proxy-middleware": "^0.20.0",
     "jquery": "^3.1.1",
     "markdown-to-jsx": "^6.10.3",
     "material-ui-toggle-icon": "^1.0.6",

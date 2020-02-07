@@ -1,30 +1,16 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'کپی رایت © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        اخبار
-      </Link>{' '}
-      {'1398'}
-      {'.'}
-    </Typography>
-  );
-}
+import signIn from "./requests";
+import {withRouter} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -38,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -46,8 +32,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+function SignIn({history}) {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = useCallback(() => {
+    signIn(username, password).then(() => {
+      history.push('/');
+    });
+  }, [username, password]);
+
+  const handleUsernameChange = useCallback(({target:{value}}) => setUsername(value))
+  const handlePasswordChange = useCallback(({target:{value}}) => setPassword(value))
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,17 +56,18 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           ورود
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="آدرس ایمیل"
-            name="email"
-            autoComplete="email"
-            autoFocus
+            id="username"
+            label="نام کاربری"
+            name="username"
+            autoComplete="username"
+            value={username}
+            onChange={handleUsernameChange}
           />
           <TextField
             variant="outlined"
@@ -80,12 +78,11 @@ export default function SignIn() {
             label="گذرواژه"
             type="password"
             id="password"
+            value={password}
             autoComplete="current-password"
+            onChange={handlePasswordChange}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="مرا به خاطر نگه دار"
-          />
+          
           <Button
             type="submit"
             fullWidth
@@ -102,16 +99,15 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/sign-up" variant="body2">
                 {"حساب کاربری ندارید؟ ثبت نام کنید."}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }
+
+export default withRouter(SignIn);
