@@ -32,6 +32,8 @@ import {connect} from "react-redux";
 import ProfileTabs from "./ProfileTabs";
 import EditProfileModal from "./EditProfileModal";
 import ToggleIcon from 'material-ui-toggle-icon';
+import Accounts from "./Accounts";
+import AccountsModal from "./AccountsModal";
 
 const styles = theme => ({
     root: {
@@ -210,8 +212,23 @@ class ProfilePage extends Component {
         followed: false,
         notification: false,
         editModalOpen: false,
+        accountsModal: false
     };
-
+    handleOpenFollowingModal = (e) => {
+        this.setState({
+            accountsModal: true,
+        })
+    };
+    handleOpenFollowedModal = (e) => {
+        this.setState({
+            accountsModal: true,
+        })
+    };
+    handleCloseAccountsModal = (e) => {
+        this.setState({
+            accountsModal: false,
+        })
+    };
     handleCloseEditProfileModal = (e) => {
         this.setState({
             editModalOpen: false,
@@ -319,13 +336,13 @@ class ProfilePage extends Component {
                         </Box>
                     </CardContent>
                     <CardActions>
-                        <Typography classes={{root: classes.following}}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleOpenFollowingModal}>
                             <p className={classes.followingNumber}>
                                 { 193 }
                             </p>
                             <p>دنبال کننده</p>
                         </Typography>
-                        <Typography classes={{root: classes.following}}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleOpenFollowedModal}>
                             <p className={classes.followingNumber}>
                                 { 3333 }
                             </p>
@@ -335,6 +352,7 @@ class ProfilePage extends Component {
                 </Card>
                 <ProfileTabs/>
                 <EditProfileModal open={editModalOpen} onClose={ this.handleCloseEditProfileModal }/>
+                <AccountsModal open={this.state.accountsModal} onClose={this.handleCloseAccountsModal} />
             </Box>
         );
     }

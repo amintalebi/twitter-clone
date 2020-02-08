@@ -75,14 +75,15 @@ function ProfileTabs() {
             >
                 <StyledTab to="/profile/2" icon={<ModeCommentRounded fontSize={"large"}/>} label="پست‌ها" {...styledTabAttributes} />
                 <StyledTab to="/profile/2/replies" icon={<ForumRounded fontSize={"large"}/>} label="جواب‌ها" {...styledTabAttributes} />
-                <StyledTab to="/profile/2/posts/own-channels" icon={<GroupAddRounded fontSize={"large"}/>} label="کانال‌ها شخصی" {...styledTabAttributes}  />
-                <StyledTab to="/profile/2/posts/channels" icon={<GroupRounded fontSize={"large"}/>} label="کانال‌های دنبال شده" {...styledTabAttributes} />
+                <StyledTab to="/profile/2/own-channels" icon={<GroupAddRounded fontSize={"large"}/>} label="کانال‌ها شخصی" {...styledTabAttributes}  />
+                <StyledTab to="/profile/2/channels" icon={<GroupRounded fontSize={"large"}/>} label="کانال‌های دنبال شده" {...styledTabAttributes} />
             </Tabs>
             <Switch>
-                <Route path='/profile/2' component={ Posts } />
-                <Route path='/profile/2/replies' component={ Posts } />
-                <Route path='profile/2/posts/own-channels' component={ Accounts } />
-                <Route path='profile/2/posts/channels' component={ Accounts } />
+                <Route exact path='/profile/:id/channels' component={ Accounts} />
+                <Route exact path='/profile/:id/own-channels' component={ Accounts } />
+                <Route exact path='/profile/:id/replies' component={ Posts } />
+                <Route exact path='/profile/:id' component={ Posts } />
+                <Route exact path='/profile' component={ Posts } />
             </Switch>
         </Box>
     );

@@ -85,8 +85,9 @@ function ChannelTabs(props) {
                 ) : null
             }
             <Switch>
-                <Route path='/channel/2' component={ Posts } />
-                <Route path='/channel/2/replies' component={ Posts } />
+                <Route path='/channel' component={ Posts } />
+                <Route path='/channel/:id' component={ Posts } />
+                <Route path='/channel/:id/replies' component={ Posts } />
             </Switch>
         </Box>
     );

@@ -195,7 +195,23 @@ class ProfilePage extends Component {
         followed: true,
         notification: false,
         editModalOpen: false,
+        accountsModal: false,
         rules: [],
+    };
+    handleCloseAccountsModal = (e) => {
+        this.setState({
+            accounts: false,
+        })
+    };
+    handleOpenFollowingModal = (e) => {
+        this.setState({
+            accounts: false,
+        })
+    };
+    handleOpenAdminsModal = (e) => {
+        this.setState({
+            accounts: false,
+        })
     };
     handleCloseEditProfileModal = (e) => {
         this.setState({
@@ -322,24 +338,23 @@ class ProfilePage extends Component {
                         </Box>
                     </CardContent>
                     <CardActions>
-                        <Typography classes={{root: classes.following}}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleOpenFollowingModal}>
                             <p className={classes.followingNumber}>
                                 { 193 }
                             </p>
                             <p>دنبال ‌کنندگان</p>
                         </Typography>
-                        <Typography classes={{root: classes.following}}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleOpenAdminsModal}>
                             <p className={classes.followingNumber}>
                                 { 333 }
                             </p>
                             <p>مدیران کانال</p>
                         </Typography>
                     </CardActions>
-                    <ChannelMoreOptionsModal open={editModalOpen} onClose={this.handleCloseEditProfileModal} />
-                    <AccountsModal  />
-                    <AccountsModal />
                 </Card>
                 <ChannelTabs mine={true} admin={true} channelID={"213"} />
+                <ChannelMoreOptionsModal open={editModalOpen} onClose={this.handleCloseEditProfileModal} />
+                <AccountsModal  open={this.state.accountsModal} onClose={this.handleCloseAccountsModal()}/>
             </Box>
         );
     }
