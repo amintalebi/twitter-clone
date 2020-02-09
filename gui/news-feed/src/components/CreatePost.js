@@ -27,6 +27,8 @@ import Button from "@material-ui/core/Button";
 import ReactPlayer from "react-player";
 import Swal from "sweetalert2";
 import {Editor, EditorState, RichUtils} from 'draft-js';
+import ReadURLModal from "./ReadURLModal";
+import {withRouter} from "react-router";
 
 
 const styles = theme => ({
@@ -93,6 +95,8 @@ class CreatePost extends Component {
         content: this.props.default && this.props.default.content ? this.props.default.content : "",
         image: this.props.default && this.props.default.media ? this.props.default.media.src : "",
         video: this.props.default && this.props.default.media ? this.props.default.media.src : "",
+        edit: Boolean("false"),
+        mediaURLModal: false,
     };
 
     textInputOnChangeHandler = (e) => {
@@ -120,17 +124,7 @@ class CreatePost extends Component {
     };
 
     readVideoUrl = async (e) => {
-        const { value: url } = await Swal.fire({
-            input: 'url',
-            inputPlaceholder: 'Enter the URL'
-        });
-        if (url) {
-            Swal.fire(`Entered URL: ${url}`);
-            this.setState({
-                video: url,
-                image: "",
-            })
-        }
+        this.setState({mediaURLModal: true});
     };
 
 
@@ -144,6 +138,7 @@ class CreatePost extends Component {
                     classes={{avatar: classes.avatar}}
                     avatar={
                         <Avatar
+                            onClick={() => this.props.history.push("/profile")}
                             aria-label="recipe"
                             alt={ myAccount.name }
                             src={ myAccount.icon }
@@ -221,6 +216,16 @@ class CreatePost extends Component {
                         }
                     </Box>
                 </CardActions>
+                <ReadURLModal
+                    open={this.state.mediaURLModal}
+                    onClose={() => this.setState({mediaURLModal: false})}
+                    setMediaURL={(url) => {
+                        this.setState({
+                            image: "",
+                            video: url,
+                        })
+                    }}
+                />
             </Card>
         );
     }
@@ -234,9 +239,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteMyPost: (id) => dispatch(deletePost(id)),
+        createPost: (id) => dispatch(deletePost(id)),
+        editPost: (id) => dispatch(deletePost(id)),
     };
 };
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(CreatePost));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(withRouter(CreatePost)));
 

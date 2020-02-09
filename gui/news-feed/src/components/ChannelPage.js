@@ -196,7 +196,7 @@ class ProfilePage extends Component {
         notification: false,
         editModalOpen: false,
         accountsModal: false,
-        rules: [],
+        rules: ["باهم دوست باشید", "شیطونی نکنید"],
     };
     handleCloseAccountsModal = (e) => {
         this.setState({
@@ -354,7 +354,7 @@ class ProfilePage extends Component {
                 </Card>
                 <ChannelTabs mine={true} admin={true} channelID={"213"} />
                 <ChannelMoreOptionsModal open={editModalOpen} onClose={this.handleCloseEditProfileModal} />
-                <AccountsModal  open={this.state.accountsModal} onClose={this.handleCloseAccountsModal()}/>
+                <AccountsModal  open={this.state.accountsModal} onClose={this.handleCloseAccountsModal}/>
             </Box>
         );
     }
