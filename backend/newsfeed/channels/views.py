@@ -1,5 +1,7 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 
+from accounts.models import Following
+from accounts.serializers import FollowSerializer
 from channels.serializers import ChannelSerializer, ChannelAdminSerializer
 from channels.models import Channel, ChannelAdmin
 

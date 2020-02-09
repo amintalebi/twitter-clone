@@ -11,7 +11,3 @@ urlpatterns = [
     path('actions/<int:pk>', ActionOnPostDetailView.as_view()),
     path('<int:pk>/update', PostUpdateView.as_view())
 ]
-
-
-
-

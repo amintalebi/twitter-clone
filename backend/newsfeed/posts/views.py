@@ -1,6 +1,8 @@
+from django.db.models import Q
 from rest_framework import generics
 from rest_framework import permissions
-
+from rest_framework import response
+from channels.models import ChannelAdmin
 from posts.models import *
 from accounts.models import Following
 from posts.serializers import *
@@ -25,24 +27,49 @@ class PostDetailView(generics.RetrieveAPIView):
 
 class PostCreateView(generics.CreateAPIView):
     serializer_class = PostCreateSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        channel_id = request.data['channel']
+        user_id = request.user.id
+        access_level = safe_get_access_level(channel_id, user_id)
+        if request.data['creator'] != request.user.id:
+            return response.Response(status=403)
+        if access_level < 2:
+            return response.Response(status=403)
+        return super().post(request, *args, **kwargs)
+
+
+def safe_get_access_level(channel_id, user_id):
+    try:
+        ch = ChannelAdmin.objects.get(Q(channel_id=channel_id) & Q(admin_id=user_id))
+    except ChannelAdmin.DoesNotExist:
+        return -1
+    return ch.access_level
 
 
 class PostUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = PostUpdateSerializer
-    queryset = Post.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        return Post.objects.filter(creator=self.request.user)
 
 
 class PostMediaCreateView(generics.CreateAPIView):
     serializer_class = PostMediaSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class PostMediaUpdateView(generics.RetrieveUpdateAPIView):
     queryset = PostMedia.objects.all()
     serializer_class = PostMediaSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ActionOnPostCreateView(generics.CreateAPIView):
     serializer_class = ActionOnPostSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

@@ -39,3 +39,13 @@ class UnfollowView(generics.RetrieveDestroyAPIView):
 class ProfileUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileUpdateSerializer
     queryset = Profile.objects.all()
+
+
+class FollowingList(generics.ListAPIView):
+    serializer_class = FollowSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        return Following.objects.filter(user=self.request.user).distinct()
+
+

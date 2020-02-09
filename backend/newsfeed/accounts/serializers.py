@@ -8,7 +8,7 @@ from accounts.models import Profile, Following
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username', 'first_name',)
 
 
 class UserSignUpSerializer(serializers.ModelSerializer):
@@ -42,6 +42,8 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 
 
 class FollowSerializer(serializers.ModelSerializer):
+    following = serializers.StringRelatedField()
+
     class Meta:
         model = Following
-        fields = '__all__'
+        fields = ('following',)

@@ -38,7 +38,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('creator', 'content', 'parent', 'channel')
 
 
 class PostMediaSerializer(serializers.ModelSerializer):
