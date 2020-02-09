@@ -29,6 +29,7 @@ import {withRouter} from "react-router";
 import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import CreatePostModal from "./CreatePostModal";
+import ReactPlayer from "react-player";
 
 const styles = theme => ({
     root: {
@@ -234,24 +235,26 @@ class Post extends Component {
                 >
                     { post.content }
                 </CardContent>
-                <CardMedia
-                    onClick={() => this.props.history.push("/post/4")}
-                    component={
-                        post.media ? (
-                            post.media.type
-                        ) : (
-                            "div"
-                        )
-                    }
-                    classes={{root: classes.mediaRoot, img: classes.img}}
-                    image={
-                        post.media ? (
-                            post.media.src
-                        ) : (
-                            "#"
-                        )
-                    }
-                />
+                {
+                    post.media && post.media.type === "img" ? (
+                        <CardMedia
+                            component= "img"
+                            classes={{root: classes.mediaRoot, img: classes.img}}
+                            image={ post.media.src }
+                        />
+                    ) : null
+                }
+                {
+                    post.media && post.media.type === "video" ? (
+                        <CardMedia>
+                            <ReactPlayer
+                                url={post.media.src}
+                                width='100%'
+                                height='220px'
+                            />
+                        </CardMedia>
+                    ) : null
+                }
                 <CardActions className={classes.cardActions}>
                     <Box className={classes.boxButtonWithNumberWrapper} onClick={this.upVote}>
                         <Typography>{this.state.upVotes}</Typography>

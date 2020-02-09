@@ -1,14 +1,19 @@
 const initState = {
     myAccount: {
-        username: "",
-        password: "",
+        name: "احمد",
+        userName: "ahhhmad",
+        avatar: "https://picsum.photos/300/300",
+        background: "https://picsum.photos/450/300",
     },
     account: {
-
+        name: "محسن",
+        userName: "ahhhmad",
+        avatar: "https://picsum.photos/300/300",
+        background: "https://picsum.photos/450/300",
     },
-    accounts: {
+    accounts: [
 
-    },
+    ],
     message: {
         result: null,
         error: "",

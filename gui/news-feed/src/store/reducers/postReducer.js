@@ -53,8 +53,8 @@ const initState = {
             publishedDate: "2000/10/9",
             id: 3,
             media: {
-                src: "https://picsum.photos/230",
-                type: "img",
+                src: "https://soundcloud.com/miami-nights-1984/accelerated",
+                type: "video",
             },
         },
         {
@@ -68,7 +68,7 @@ const initState = {
             publishedDate: "2019/10/9",
             id: 4,
             media: {
-                src: "https://picsum.photos/200/300",
+                src: "https://www.youtube.com/watch?v=jNgP6d9HraI",
                 type: "img",
             },
         },
