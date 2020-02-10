@@ -24,7 +24,7 @@ SECRET_KEY = '1q4q1r#vmv!1^5iv(bus&#l^8v0i+#v)px0080uc85!*4!@%0i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://37.139.15.203']
 
 # Application definition
 
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'posts',
     'channels',
     'events',
-    'social_django',
 ]
 
 MIDDLEWARE = [
