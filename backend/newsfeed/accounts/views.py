@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import permissions, status, generics
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -38,6 +40,7 @@ class UnfollowView(generics.RetrieveDestroyAPIView):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
+    # @method_decorator(cache_page(60))
     def get_queryset(self):
         return Following.objects.filter(user_id=self.request.user.id)
 

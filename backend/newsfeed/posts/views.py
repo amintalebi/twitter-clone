@@ -7,11 +7,15 @@ from posts.models import *
 from accounts.models import Following
 from posts.serializers import *
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
 
 class FollowingPostsView(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = PostSerializer
 
+    # @method_decorator(cache_page(60))
     def get_queryset(self):
         followings_ids = Following.objects. \
             filter(user=self.request.user).values_list('following_id', flat=True). \
@@ -24,6 +28,7 @@ class HotPostsView(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = PostSerializer
 
+    # @method_decorator(cache_page(60))
     def get_queryset(self):
         return Post.objects.order_by('up_vote_count')
 
@@ -32,16 +37,20 @@ class ContributedPostsView(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = PostSerializer
 
+    # @method_decorator(cache_page(60))
     def get_queryset(self):
-        parent_ids = Post.objects.filter(creator_id=self.request.user.id).\
-            filter(parent__isnull=False).\
+        parent_ids = Post.objects.filter(creator_id=self.request.user.id). \
+            filter(parent__isnull=False). \
             values_list('parent_id', flat=True).distinct()
         return Post.objects.filter(id__in=parent_ids)
 
 
 class PostDetailView(generics.RetrieveAPIView):
-    queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
+
+    # @method_decorator(cache_page(60))
+    def get_queryset(self):
+        return Post.objects.all()
 
 
 class PostCreateView(generics.CreateAPIView):
@@ -73,6 +82,7 @@ class PostUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = PostUpdateSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
+    # @method_decorator(cache_page(60))
     def get_queryset(self):
         return Post.objects.filter(creator=self.request.user)
 
@@ -83,9 +93,12 @@ class PostMediaCreateView(generics.CreateAPIView):
 
 
 class PostMediaUpdateView(generics.RetrieveUpdateAPIView):
-    queryset = PostMedia.objects.all()
     serializer_class = PostMediaSerializer
     permission_classes = (permissions.IsAuthenticated,)
+
+    # @method_decorator(cache_page(60))
+    def get_queryset(self):
+        return PostMedia.objects.all()
 
 
 class ActionOnPostCreateView(generics.CreateAPIView):

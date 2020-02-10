@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import generics, permissions, response
 
 from channels.serializers import ChannelCreateSerializer, ChannelAdminSerializer, ChannelReadSerializer
@@ -21,6 +23,10 @@ class ChannelDetailView(generics.RetrieveDestroyAPIView):
     queryset = Channel.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
+    # @method_decorator(cache_page(60))
+    def get_queryset(self):
+        return Channel.objects.all()
+
 
 class ChannelAdminCreateView(generics.CreateAPIView):
     serializer_class = ChannelAdminSerializer
@@ -31,3 +37,7 @@ class ChannelAdminDetailView(generics.RetrieveDestroyAPIView):
     serializer_class = ChannelAdminSerializer
     queryset = ChannelAdmin.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
+
+    # @method_decorator(cache_page(60))
+    def get_queryset(self):
+        return ChannelAdmin.objects.all()
