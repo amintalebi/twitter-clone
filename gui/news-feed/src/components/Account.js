@@ -66,7 +66,7 @@ class Account extends Component {
                         <Button
                             color="primary"
                             classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
-                            onClick={() => this.revertProp("followed")}
+                            onClick={this.revertProp("followed")}
                         >
                             {
                                 followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"

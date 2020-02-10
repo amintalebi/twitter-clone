@@ -44,7 +44,7 @@ class Admin extends Component {
     revertProp = (prop) => (e) => {
         this.setState({
             [prop]: !this.state[prop],
-        })
+        });
     };
 
     render() {
@@ -68,7 +68,7 @@ class Admin extends Component {
                             <Button
                                 color="primary"
                                 classes={{root: classes.actionButtonOff}}
-                                onClick={() => this.revertProp("access")}
+                                onClick={this.revertProp("access")}
                             >
                                 {
                                     this.state.access ? "دسترسی کامل به پست ها" : "دسترسی فقط به پست های شخصی"
@@ -77,7 +77,7 @@ class Admin extends Component {
                             <Button
                                 color="primary"
                                 classes={{root: classes.actionButtonOn}}
-                                onClick={() => removeAdmin()}
+                                onClick={removeAdmin}
                             >
                                 حذف
                             </Button>

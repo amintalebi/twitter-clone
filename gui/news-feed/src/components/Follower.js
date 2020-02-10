@@ -39,6 +39,7 @@ const styles = theme => ({
 class Follower extends Component {
     state = {
         access: false,
+        followed: false,
     };
 
     revertProp = (prop) => (e) => {
@@ -48,7 +49,7 @@ class Follower extends Component {
     };
 
     render() {
-        const { classes, access, followedHandler, removeAdmin} = this.props;
+        const { classes, access, followedHandler, banFollower, followed } = this.props;
         return (
             <Card className={classes.accountRoot}>
                 <CardHeader
@@ -67,19 +68,19 @@ class Follower extends Component {
                         <Box>
                             <Button
                                 color="primary"
-                                classes={{root: classes.actionButtonOff}}
-                                onClick={() => this.revertProp("access")}
+                                classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
+                                onClick={this.revertProp("followed")}
                             >
                                 {
-                                    this.state.access ? "دسترسی کامل به پست ها" : "دسترسی فقط به پست های شخصی"
+                                    followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
                                 }
                             </Button>
                             <Button
                                 color="primary"
                                 classes={{root: classes.actionButtonOn}}
-                                onClick={() => removeAdmin()}
+                                onClick={banFollower}
                             >
-                                حذف
+                                بن کردن
                             </Button>
                         </Box>
                     }
