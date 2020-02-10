@@ -2,7 +2,9 @@ from django.urls import path
 from posts.views import *
 
 urlpatterns = [
-    path('following-posts', FollowingPostsView.as_view()),
+    path('following', FollowingPostsView.as_view()),
+    path('hot', HotPostsView.as_view()),
+    path('contr', ContributedPostsView.as_view()),
     path('<int:pk>', PostDetailView.as_view()),
     path('create', PostCreateView.as_view()),
     path('pm/<int:pk>', PostMediaUpdateView.as_view()),

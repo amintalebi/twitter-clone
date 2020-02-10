@@ -20,6 +20,25 @@ class FollowingPostsView(generics.ListAPIView):
         return Post.objects.filter(creator_id__in=followings_ids)
 
 
+class HotPostsView(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        return Post.objects.order_by('up_vote_count')
+
+
+class ContributedPostsView(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        parent_ids = Post.objects.filter(creator_id=self.request.user.id).\
+            filter(parent__isnull=False).\
+            values_list('parent_id', flat=True).distinct()
+        return Post.objects.filter(id__in=parent_ids)
+
+
 class PostDetailView(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
@@ -30,13 +49,15 @@ class PostCreateView(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
-        channel_id = request.data['channel']
-        user_id = request.user.id
-        access_level = safe_get_access_level(channel_id, user_id)
-        if request.data['creator'] != request.user.id:
-            return response.Response(status=403)
-        if access_level < 2:
-            return response.Response(status=403)
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            channel_id = request.data['channel']
+            user_id = request.user.id
+            access_level = safe_get_access_level(channel_id, user_id)
+            if int(request.data['creator']) != int(request.user.id):
+                return response.Response(status=403, data="invalid creator")
+            if access_level < 2:
+                return response.Response(status=403, data="invalid access level")
         return super().post(request, *args, **kwargs)
 
 

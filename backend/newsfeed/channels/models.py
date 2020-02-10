@@ -12,6 +12,15 @@ class Channel(models.Model):
     def __str__(self):
         return str(self.id) + ': ' + self.name
 
+    def save(self, *args, **kwargs):
+        flag = False
+        if self.pk is None:
+            flag = True
+        ret = super().save(*args, **kwargs)
+        if flag:
+            ChannelAdmin.objects.create(channel=self, admin=self.creator, access_level=4)
+        return ret
+
 
 class ChannelAdmin(models.Model):
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
