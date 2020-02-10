@@ -17,3 +17,6 @@ class Profile(models.Model):
 class Following(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following_user')
     following = models.ForeignKey(Channel, on_delete=models.CASCADE, related_name='following_channel')
+
+    class Meta:
+        unique_together = ('user', 'following', )
