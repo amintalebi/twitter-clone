@@ -23,9 +23,11 @@ const styles = theme => ({
     },
     actionButtonOff: {
         borderRadius: 100,
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        "&:hover": {
+            backgroundColor: theme.palette.primary.dark,
+        },
         boxSizing: "border-box",
         height: 35,
     },
@@ -34,8 +36,9 @@ const styles = theme => ({
     },
 });
 
-class Account extends Component {
+class Follower extends Component {
     state = {
+        access: false,
         followed: false,
     };
 
@@ -46,8 +49,7 @@ class Account extends Component {
     };
 
     render() {
-        // "followers -> follow ban" "normal(search, following)" "channelMembers -> delete and ban" "channelAdmins -> delete access"
-        const { classes, followed, followedHandler} = this.props;
+        const { classes, access, followedHandler, banFollower, followed } = this.props;
         return (
             <Card className={classes.accountRoot}>
                 <CardHeader
@@ -63,15 +65,24 @@ class Account extends Component {
                     title={"علی"}
                     subheader={ "@" + "ali_j1" }
                     action={
-                        <Button
-                            color="primary"
-                            classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
-                            onClick={this.revertProp("followed")}
-                        >
-                            {
-                                followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
-                            }
-                        </Button>
+                        <Box>
+                            <Button
+                                color="primary"
+                                classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
+                                onClick={this.revertProp("followed")}
+                            >
+                                {
+                                    followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
+                                }
+                            </Button>
+                            <Button
+                                color="primary"
+                                classes={{root: classes.actionButtonOn}}
+                                onClick={banFollower}
+                            >
+                                بن کردن
+                            </Button>
+                        </Box>
                     }
                 />
             </Card>
@@ -85,4 +96,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default withStyles(styles)(connect(mapStateToProps, null)(withRouter(Account)));
+export default withStyles(styles)(connect(mapStateToProps, null)(withRouter(Follower)));

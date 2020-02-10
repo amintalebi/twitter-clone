@@ -12,6 +12,7 @@ import {withStyles} from "@material-ui/core";
 import {connect} from "react-redux";
 import {signUp} from "../store/actioncreators/accountAction";
 import {withRouter} from "react-router";
+import {smallSwal} from "./Swals";
 
 const styles =theme => ({
   paper: {
@@ -51,7 +52,7 @@ class SignUp extends Component{
 
   signUp = (e) => {
     if (this.state.password !== this.state.repeatPassword) {
-      alert("پسورد ها متفاوت اند")
+      smallSwal("error","پسورد ها متفاوت اند")
     }
     else {
       this.props.signUp(this.state.name, this.state.userName, this.state.email, this.state.password);
@@ -60,14 +61,11 @@ class SignUp extends Component{
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.message !== prevProps.message) {
-      console.log("component did update")
-      console.log(prevProps)
-      console.log(this.props)
       if (this.props.message.result) {
-        alert("با موفقیت ثبت نام شدید");
+        smallSwal("success","با موفقیت ثبت نام شدید");
         this.props.history.push("sign-in")
       }
-      else alert(this.props.result.error)
+      else smallSwal("error", this.props.result.error)
     }
   }
 
@@ -78,7 +76,7 @@ class SignUp extends Component{
       email,
       password,
       repeatPassword,
-      showPassword} = this.state
+      showPassword} = this.state;
     return (
         <Container component="main" maxWidth="xs">
           <CssBaseline />

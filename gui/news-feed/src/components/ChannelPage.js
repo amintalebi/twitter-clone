@@ -32,6 +32,9 @@ import ChannelMoreOptionsModal from "./ChannelMoreOptionsModal";
 import AccountsModal from "./AccountsModal";
 import Accounts from "./Accounts";
 import ChannelTabs from "./ChannelTabs";
+import Admins from "./Admins";
+import AdminsModal from "./AdminsModal";
+import FollowersModal from "./FollowersModal";
 
 const styles = theme => ({
     root: {
@@ -195,8 +198,14 @@ class ProfilePage extends Component {
         followed: true,
         notification: false,
         editModalOpen: false,
-        accountsModal: false,
-        rules: [],
+        followersModal: false,
+        adminsModal: false,
+        rules: ["باهم دوست باشید", "شیطونی نکنید"],
+    };
+    handleRevertState = (state) => (e) => {
+        this.setState({
+            [state]: !this.state[state],
+        })
     };
     handleCloseAccountsModal = (e) => {
         this.setState({
@@ -338,13 +347,13 @@ class ProfilePage extends Component {
                         </Box>
                     </CardContent>
                     <CardActions>
-                        <Typography classes={{root: classes.following}} onClick={this.handleOpenFollowingModal}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleRevertState("followersModal")}>
                             <p className={classes.followingNumber}>
                                 { 193 }
                             </p>
                             <p>دنبال ‌کنندگان</p>
                         </Typography>
-                        <Typography classes={{root: classes.following}} onClick={this.handleOpenAdminsModal}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleRevertState("adminsModal")}>
                             <p className={classes.followingNumber}>
                                 { 333 }
                             </p>
@@ -354,7 +363,8 @@ class ProfilePage extends Component {
                 </Card>
                 <ChannelTabs mine={true} admin={true} channelID={"213"} />
                 <ChannelMoreOptionsModal open={editModalOpen} onClose={this.handleCloseEditProfileModal} />
-                <AccountsModal  open={this.state.accountsModal} onClose={this.handleCloseAccountsModal()}/>
+                <FollowersModal  open={this.state.followersModal} onClose={this.handleRevertState("followersModal")}/>
+                <AdminsModal open={this.state.adminsModal} onClose={this.handleRevertState("adminsModal")}/>
             </Box>
         );
     }

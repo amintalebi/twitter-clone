@@ -10,6 +10,7 @@ import NotificationModal from "./NotificationModal";
 import {Link} from "react-router-dom";
 import MoreOptionsModal from "./MoreOptionsModal";
 import SeachModal from "./SeachModal";
+import Button from "@material-ui/core/Button";
 
 
 const useStyles = makeStyles(theme => ({

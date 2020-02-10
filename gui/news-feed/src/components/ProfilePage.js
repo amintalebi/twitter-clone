@@ -34,6 +34,7 @@ import EditProfileModal from "./EditProfileModal";
 import ToggleIcon from 'material-ui-toggle-icon';
 import Accounts from "./Accounts";
 import AccountsModal from "./AccountsModal";
+import FollowersModal from "./FollowersModal";
 
 const styles = theme => ({
     root: {
@@ -212,7 +213,13 @@ class ProfilePage extends Component {
         followed: false,
         notification: false,
         editModalOpen: false,
-        accountsModal: false
+        followingsModal: false,
+        followersModal: false,
+    };
+    handleRevertState = (state) => (e) => {
+        this.setState({
+            [state]: !this.state[state],
+        })
     };
     handleOpenFollowingModal = (e) => {
         this.setState({
@@ -336,13 +343,13 @@ class ProfilePage extends Component {
                         </Box>
                     </CardContent>
                     <CardActions>
-                        <Typography classes={{root: classes.following}} onClick={this.handleOpenFollowingModal}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleRevertState("followersModal")}>
                             <p className={classes.followingNumber}>
                                 { 193 }
                             </p>
                             <p>دنبال کننده</p>
                         </Typography>
-                        <Typography classes={{root: classes.following}} onClick={this.handleOpenFollowedModal}>
+                        <Typography classes={{root: classes.following}} onClick={this.handleRevertState("followingsModal")}>
                             <p className={classes.followingNumber}>
                                 { 3333 }
                             </p>
@@ -352,7 +359,8 @@ class ProfilePage extends Component {
                 </Card>
                 <ProfileTabs/>
                 <EditProfileModal open={editModalOpen} onClose={ this.handleCloseEditProfileModal }/>
-                <AccountsModal open={this.state.accountsModal} onClose={this.handleCloseAccountsModal} />
+                <AccountsModal open={this.state.followingsModal} onClose={this.handleRevertState("followingsModal")} />
+                <FollowersModal open={this.state.followersModal} onClose={this.handleRevertState("followersModal")}/>
             </Box>
         );
     }

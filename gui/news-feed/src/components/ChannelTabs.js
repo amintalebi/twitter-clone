@@ -65,6 +65,7 @@ function ChannelTabs(props) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
     return (
 
         <Box>
@@ -79,11 +80,7 @@ function ChannelTabs(props) {
                 <StyledTab to="/channel/2" icon={<ModeCommentRounded fontSize={"large"}/>} label="پست‌ها" {...styledTabAttributes} />
                 <StyledTab to="/channel/2/replies" icon={<ForumRounded fontSize={"large"}/>} label="جواب‌ها" {...styledTabAttributes} />
             </Tabs>
-            {
-                mine || admin ? (
-                    <CreatePost channelID={channelID} />
-                ) : null
-            }
+            <CreatePost />
             <Switch>
                 <Route path='/channel' component={ Posts } />
                 <Route path='/channel/:id' component={ Posts } />

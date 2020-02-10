@@ -186,6 +186,13 @@ class EditProfileModal extends Component {
                                     <AddAPhotoRounded fontSize="small" />
                                 </IconButton>
                             </label>
+                            {
+                                backgroundImage ? (
+                                    <IconButton component="span" onClick={() => this.setState({backgroundImage: ""})}>
+                                        <CloseRounded fontSize="small" />
+                                    </IconButton>
+                                ) : null
+                            }
                         </Box>
                         <Box className={classes.avatarImageWrapper}>
                             <img alt={null} className={classes.avatarImage} src={ avatarImage }/>
@@ -202,6 +209,13 @@ class EditProfileModal extends Component {
                                     <AddAPhotoRounded fontSize="small" />
                                 </IconButton>
                             </label>
+                            {
+                                avatarImage ? (
+                                    <IconButton component="span" onClick={() => this.setState({avatarImage: ""})}>
+                                        <CloseRounded fontSize="small" />
+                                    </IconButton>
+                                ) : null
+                            }
                         </Box>
                         <TextField
 

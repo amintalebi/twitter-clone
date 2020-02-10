@@ -23,9 +23,11 @@ const styles = theme => ({
     },
     actionButtonOff: {
         borderRadius: 100,
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        "&:hover": {
+            backgroundColor: theme.palette.primary.dark,
+        },
         boxSizing: "border-box",
         height: 35,
     },
@@ -34,20 +36,19 @@ const styles = theme => ({
     },
 });
 
-class Account extends Component {
+class Admin extends Component {
     state = {
-        followed: false,
+        access: false,
     };
 
     revertProp = (prop) => (e) => {
         this.setState({
             [prop]: !this.state[prop],
-        })
+        });
     };
 
     render() {
-        // "followers -> follow ban" "normal(search, following)" "channelMembers -> delete and ban" "channelAdmins -> delete access"
-        const { classes, followed, followedHandler} = this.props;
+        const { classes, access, followedHandler, removeAdmin} = this.props;
         return (
             <Card className={classes.accountRoot}>
                 <CardHeader
@@ -63,15 +64,24 @@ class Account extends Component {
                     title={"علی"}
                     subheader={ "@" + "ali_j1" }
                     action={
-                        <Button
-                            color="primary"
-                            classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
-                            onClick={this.revertProp("followed")}
-                        >
-                            {
-                                followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
-                            }
-                        </Button>
+                        <Box>
+                            <Button
+                                color="primary"
+                                classes={{root: classes.actionButtonOff}}
+                                onClick={this.revertProp("access")}
+                            >
+                                {
+                                    this.state.access ? "دسترسی کامل به پست ها" : "دسترسی فقط به پست های شخصی"
+                                }
+                            </Button>
+                            <Button
+                                color="primary"
+                                classes={{root: classes.actionButtonOn}}
+                                onClick={removeAdmin}
+                            >
+                                حذف
+                            </Button>
+                        </Box>
                     }
                 />
             </Card>
@@ -85,4 +95,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default withStyles(styles)(connect(mapStateToProps, null)(withRouter(Account)));
+export default withStyles(styles)(connect(mapStateToProps, null)(withRouter(Admin)));

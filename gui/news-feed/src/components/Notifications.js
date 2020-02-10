@@ -23,7 +23,7 @@ const styles = theme => ({
         borderBottom: `1px solid ${theme.palette.tertiary.main}`,
     },
     avatar: {
-        marginRight: theme.spacing(1),
+        marginLeft: theme.spacing(1),
     }
 });
 
