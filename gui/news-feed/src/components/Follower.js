@@ -43,6 +43,7 @@ class Follower extends Component {
     };
 
     revertProp = (prop) => (e) => {
+        console.log(this.state)
         this.setState({
             [prop]: !this.state[prop],
         })
@@ -68,11 +69,11 @@ class Follower extends Component {
                         <Box>
                             <Button
                                 color="primary"
-                                classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
+                                className={ this.state.followed ? classes.actionButtonOn : classes.actionButtonOff }
                                 onClick={this.revertProp("followed")}
                             >
                                 {
-                                    followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
+                                    this.state.followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
                                 }
                             </Button>
                             <Button

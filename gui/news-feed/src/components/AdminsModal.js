@@ -16,6 +16,7 @@ import {deletePost} from "../store/actioncreators/postActions";
 import {connect} from "react-redux";
 import Accounts from "./Accounts";
 import Admins from "./Admins";
+import SeachModal from "./SeachModal";
 
 const styles = theme => ({
     paper: {
@@ -60,13 +61,22 @@ const styles = theme => ({
             width: "100%",
         }
     },
-
+    actionButtonOff: {
+        borderRadius: 100,
+        backgroundColor: theme.palette.primary.main,
+        color: "white",
+        "&:hover": {
+            backgroundColor: theme.palette.primary.dark,
+        },
+        boxSizing: "border-box",
+        height: 35,
+    },
 });
 
 class AdminsModal extends Component {
     state = {
         type: this.props.type, // "followers" "followings -> follow ban" "channelMembers -> delete and ban" "channelAdmins -> add delete access"
-
+        addAdminModal: false,
     };
 
     handleChange = (prop) => (e) => {
@@ -103,6 +113,13 @@ class AdminsModal extends Component {
                                 <CloseRounded fontSize="small" />
                             </IconButton>
                             <Typography> ادمین ها </Typography>
+                            <Button
+                                color="primary"
+                                classes={{root: classes.actionButtonOff}}
+                                onClick={this.handleClickShowField("addAdminModal")}
+                            >
+                                اضافه کردن ادمین
+                            </Button>
                         </Box>
                     </Box>
                 </DialogTitle>
@@ -111,6 +128,7 @@ class AdminsModal extends Component {
                         <Admins scrollableTargetID="scrollableWrapperForAccounts"/>
                     </Box>
                 </DialogContent>
+                <SeachModal open={this.state.addAdminModal} onClose={this.handleClickShowField("addAdminModal")}/>
             </Dialog>
         );
     }

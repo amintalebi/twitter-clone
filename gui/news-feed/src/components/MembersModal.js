@@ -18,6 +18,7 @@ import Accounts from "./Accounts";
 import Admins from "./Admins";
 import Followers from "./Followers";
 import Members from "./Members";
+import SeachModal from "./SeachModal";
 
 const styles = theme => ({
     paper: {
@@ -113,6 +114,7 @@ class MembersModal extends Component {
                         <Members scrollableTargetID="scrollableWrapperForAccounts"/>
                     </Box>
                 </DialogContent>
+
             </Dialog>
         );
     }

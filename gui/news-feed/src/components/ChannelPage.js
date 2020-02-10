@@ -383,4 +383,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfilePage)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfilePage))));

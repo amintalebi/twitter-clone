@@ -36,7 +36,7 @@ const styles = theme => ({
 
 class Account extends Component {
     state = {
-        followed: false,
+        followed: true,
     };
 
     revertProp = (prop) => (e) => {
@@ -65,11 +65,11 @@ class Account extends Component {
                     action={
                         <Button
                             color="primary"
-                            classes={{root: followed ? classes.actionButtonOn : classes.actionButtonOff}}
+                            classes={{root: this.state.followed ? classes.actionButtonOn : classes.actionButtonOff}}
                             onClick={this.revertProp("followed")}
                         >
                             {
-                                followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
+                                this.state.followed ? "حذف از دنبال شده‌ها" : "دنبال کردن"
                             }
                         </Button>
                     }

@@ -103,7 +103,7 @@ class FollowersModal extends Component {
                             <IconButton className={classes.closeButton} onClick={onClose}>
                                 <CloseRounded fontSize="small" />
                             </IconButton>
-                            <Typography> ادمین ها </Typography>
+                            <Typography> دنبال کننده ها </Typography>
                         </Box>
                     </Box>
                 </DialogTitle>
